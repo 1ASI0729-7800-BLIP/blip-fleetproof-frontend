@@ -1,0 +1,45 @@
+@startuml
+package "Dominio" {
+  class User
+  class Vehicle
+  class VehicleReport
+  class Monitoring
+  class Alert
+  class Fleet
+  class ResolutionCase
+}
+package "Infraestructura" {
+  interface BaseAssembler
+  abstract class BaseApiEndpoint
+  class CsvParser
+}
+package "Aplicacion" {
+  class ResourceStore
+  class IamStore
+  class VehicleStore
+  class ReportStore
+  class MonitoringStore
+  class FleetStore
+}
+package "Presentacion" {
+  abstract class BaseForm
+  class AuthView
+  class VehicleDialog
+  class CaseDialog
+}
+VehicleStore --|> ResourceStore
+ReportStore --|> ResourceStore
+FleetStore --|> ResourceStore
+ResourceStore --> BaseApiEndpoint
+BaseApiEndpoint --> BaseAssembler
+BaseAssembler ..> Vehicle
+IamStore ..> User
+VehicleReport --> Vehicle : vehicleId
+Monitoring --> Vehicle : vehicleId
+Alert --> VehicleReport : reportId
+ResolutionCase --> VehicleReport : reportId
+Vehicle --> Fleet : fleetId
+AuthView --|> BaseForm
+VehicleDialog --|> BaseForm
+CaseDialog --|> BaseForm
+@enduml
