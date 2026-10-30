@@ -180,6 +180,7 @@
     "partial": "One or more sources did not respond. Check coverage and limitations."
   },
   "cases": {
+    "history": "Resolution history",
     "subtitle": "Assign responsible people and document finding resolution",
     "create": "Create case",
     "title": "Reason",

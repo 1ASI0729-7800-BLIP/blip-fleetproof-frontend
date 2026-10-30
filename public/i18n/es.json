@@ -180,6 +180,7 @@
     "partial": "Una o más fuentes no respondieron. Revisa cobertura y limitaciones."
   },
   "cases": {
+    "history": "Historial de atención",
     "subtitle": "Asigna responsables y documenta atención de observaciones",
     "create": "Crear caso",
     "title": "Motivo",

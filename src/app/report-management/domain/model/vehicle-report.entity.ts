@@ -86,12 +86,18 @@ export function compareReports(
   previous: VehicleReport,
   current: VehicleReport,
 ): Finding[] {
+  if (previous.vehicleId !== current.vehicleId || previous.userId !== current.userId)
+    return [];
   const comparable = new Set(
     previous.sources.filter((s) => s.status === "available").map((s) => s.name),
   );
-  const oldIds = new Set(previous.findings.map((f) => f.id));
   return current.sources
     .filter((s) => s.status === "available" && comparable.has(s.name))
-    .flatMap((s) => s.findings)
-    .filter((f) => !oldIds.has(f.id));
+    .flatMap((s) => {
+      const previousFindings = previous.sources.find((source) => source.name === s.name)?.findings ?? [];
+      return s.findings.filter((finding) => !previousFindings.some((old) =>
+        old.id === finding.id && old.severity === finding.severity &&
+        old.descriptionKey === finding.descriptionKey,
+      ));
+    });
 }

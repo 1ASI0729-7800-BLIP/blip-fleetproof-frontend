@@ -5,8 +5,8 @@ Frontend Angular para TB1 / Sprint 2 de Desarrollo de Aplicaciones Open Source. 
 ## Ejecución en WebStorm
 
 1. Abrir esta carpeta como proyecto. Configurar Node.js 24.15 o superior de la rama 24, o Node.js 22.22.3 o superior de la rama 22, compatibles con Angular 22.
-2. Ejecutar `npm install` y `npm run dev` en la terminal. También pueden ejecutarse los scripts `api` y `start` por separado desde `package.json`.
-3. Abrir http://localhost:4200. La API simulada se ejecuta en http://127.0.0.1:3000/api/v1.
+2. Ejecutar `npm ci` y `npm run dev` en la terminal. También pueden ejecutarse los scripts `api` y `start` por separado desde `package.json`.
+3. Abrir http://127.0.0.1:4200. La API simulada se ejecuta en http://127.0.0.1:3000/api/v1.
 4. Acceder con `demo@fleetproof.pe` y `FleetProof2026!`, o registrar una cuenta de demostración.
 
 Los datos son sintéticos. JSON Server no proporciona autenticación ni autorización reales: la validación de acceso y el aislamiento visual por usuario son simulaciones educativas. No introducir datos personales, credenciales reales ni evidencia de vehículos reales. El registro de una cuenta nueva empieza sin vehículos.
@@ -28,11 +28,11 @@ Las vistas delegan persistencia y reglas a stores/servicios. Los recursos JSON s
 |---|---|---|
 | 1 | Sebastian Reyes | Base Angular, shared, layout, i18n y configuración local |
 | 2 | Gonzalo Quintanilla | IAM: acceso, registro y perfil |
-| 3 | Rodrigo Gómez De La Torre | Vehículos, reportes, riesgo y PDF |
-| 4 | Jefferson Morales | Monitoreo, comparación histórica y alertas |
-| 5 | Eduardo Gorbeña | Flotas, CSV, casos y verificación integral |
+| 3 | Rodrigo Gómez De La Torre | Reportes, riesgo, comparación y PDF |
+| 4 | Jefferson Morales | Monitoreo y alertas |
+| 5 | Eduardo Gorbeña | Vehicle Information: registro, listado y consulta |
 
-Los commits de preparación se crean con la identidad Git del autor efectivo. Para registrar contribuciones personales, cada integrante debe revisar su bloque y crear sus propios commits; no se falsifican autores. Esta división no implica que los integrantes ya hayan realizado el trabajo.
+Fleet Management, CSV y casos corresponden también al bloque de Sebastian. La distribución refleja el capítulo V del informe; no prueba por sí sola ejecución o aceptación. Los commits se crean con la identidad del autor efectivo; no se falsifican autores.
 
 ## i18n y Postman
 
@@ -44,7 +44,7 @@ Los commits de preparación se crean con la identidad Git del autor efectivo. Pa
 - `npm run lint`: análisis estático TypeScript, sin warnings.
 - `npm test -- --watch=false --browsers=ChromeHeadless`: pruebas Jasmine/Karma con Angular CLI; requiere Google Chrome o CHROME_BIN configurado.
 
-Se conserva la prueba básica de la aplicación con Jasmine/Karma, siguiendo la base del curso. No se requieren herramientas adicionales de pruebas.
+Las pruebas Jasmine/Karma incluyen reglas de riesgo, comparación de fuentes, conservación del historial de casos y evidencia de cierre. No se requieren dependencias adicionales para las pruebas unitarias.
 
 Los capítulos suministrados describen Vue/PrimeVue en algunos apartados. Esta implementación usa Angular/Material conforme a la base docente indicada para esta tarea; el informe deberá alinearse con la tecnología implementada antes de la entrega.
 
@@ -64,7 +64,7 @@ Consultar docs/adrs.md, docs/user-stories.md y docs/class-diagram.puml para deci
 
 Se reutiliza el patrón de configuración del profesor: `production`, `platformProviderApiBaseUrl` y propiedades `platformProvider...EndpointPath`. Los endpoints consumen estas propiedades, sin rutas de recursos incrustadas en los servicios.
 
-- `environment.ts`: configuración de producción, con base relativa `/api/v1` pendiente de API/proxy para despliegue.
+- `environment.ts`: producción con la URL absoluta `https://fleetproof-fake-api.onrender.com`; consume recursos sin prefijo, por ejemplo `/users`.
 - `environment.development.ts`: configuración local con JSON Server en `http://127.0.0.1:3000/api/v1`.
 - `angular.json`: la configuración development reemplaza el archivo de producción, igual que Learning Center. `npm start` utiliza development; `npm run build` utiliza production.
 
@@ -76,4 +76,12 @@ La raíz sigue Learning Center con .editorconfig, CHANGELOG.md, CONTRIBUTING.md,
 
 .idea, node_modules, dist, .angular, out-tsc y coverage son archivos locales o generados, no entregables.
 
-La configuración Jasmine/Karma heredada de la referencia introduce seis alertas altas de npm audit en dependencias de desarrollo (Karma y su cadena braces/chokidar). No ejecutar npm audit fix --force sin revisar sus cambios incompatibles. Esto no sustituye una revisión de seguridad del backend; el mock sigue sin seguridad de producción.
+La auditoría del 29/10/2026 encontró 11 alertas npm (3 críticas). Se actualizaron dependencias transitivas dentro de los rangos compatibles, sin `--force`; `npm audit` pasó a 0 alertas conocidas. Esto no convierte el mock en un sistema seguro de producción y debe verificarse de nuevo al cambiar dependencias.
+
+## Demostración y límites del dominio
+
+El segmento inicial de la demostración es una pequeña flota de reparto. El recorrido es: registrar vehículo, generar snapshot, activar monitoreo manual, ejecutar un ciclo que detecta un cambio sintético, abrir la alerta, consultar el reporte, crear un caso con responsable, registrar una referencia de evidencia y resolverlo. Un caso resuelto conserva las revisiones de atención y no modifica los snapshots históricos ni certifica una regularización oficial.
+
+Las referencias de evidencia son texto, no archivos adjuntos ni validación documental. La primera edición de un caso antiguo captura su estado anterior en ese momento: no reconstruye eventos históricos ausentes. El historial es editable mediante la Fake API y no constituye un registro inmutable. No existen roles ni autorización de servidor; un control del cliente no protege los datos contra llamadas directas.
+
+Fixtures de fuentes y fecha de generación del snapshot representan una simulación. No prueban vigencia oficial de SOAT/CITV, discrepancias reales entre registros ni verificaciones externas. La disponibilidad incompleta produce reporte parcial y no debe mostrar riesgo bajo sin cobertura. Las pruebas de usabilidad con personas y la medición de mejoras de tiempo no se han realizado como parte de esta auditoría.

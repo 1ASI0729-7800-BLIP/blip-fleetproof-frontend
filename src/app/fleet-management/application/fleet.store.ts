@@ -41,6 +41,11 @@ export class CaseStore extends ResourceStore<
     return this.load({ userId: this.iam.user()!.id });
   }
   override async save(item: ResolutionCase): Promise<ResolutionCase | null> {
+    const user = this.iam.user();
+    if (!user || (item.id && item.userId !== user.id)) {
+      this.error.set("common.saveError");
+      return null;
+    }
     if (item.status === "resolved" && !item.canResolve) {
       this.error.set("cases.evidenceRequired");
       return null;
@@ -49,7 +54,7 @@ export class CaseStore extends ResourceStore<
       this.error.set("common.required");
       return null;
     }
-    item.userId = this.iam.user()!.id;
+    item.userId = user.id;
     return super.save(item);
   }
 }

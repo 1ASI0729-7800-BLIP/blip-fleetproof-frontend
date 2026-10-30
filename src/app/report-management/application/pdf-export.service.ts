@@ -44,7 +44,7 @@ export class PdfExportService {
           ? source.evidence
           : t("report.sourceFailure"),
       );
-      for (const finding of source.findings)
+      for (const finding of source.status === "available" ? source.findings : [])
         line(t(finding.descriptionKey) + " · " + t("risk." + finding.severity));
     }
     doc.save(

@@ -23,6 +23,15 @@ export class Fleet implements BaseEntity {
   }
 }
 
+export interface CaseRevision {
+  recordedAt: string;
+  actorId: number;
+  responsible: string;
+  status: "open" | "in-progress" | "resolved";
+  evidence: string;
+  notes: string;
+}
+
 export class ResolutionCase implements BaseEntity {
   #id: number;
   get id(): number {
@@ -88,6 +97,7 @@ export class ResolutionCase implements BaseEntity {
     evidence: string,
     notes: string,
     createdAt: string,
+    readonly history: CaseRevision[] = [],
   ) {
     this.#id = id;
     this.#userId = userId;

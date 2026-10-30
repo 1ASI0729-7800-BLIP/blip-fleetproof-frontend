@@ -1,4 +1,5 @@
 import { BaseResource } from "../../shared/infrastructure/base-response";
+import { CaseRevision } from "../domain/model/fleet.entity";
 export interface FleetData extends BaseResource {
   userId: number;
   name: string;
@@ -15,4 +16,5 @@ export interface CaseData extends BaseResource {
   evidence: string;
   notes: string;
   createdAt: string;
+  history?: CaseRevision[];
 }

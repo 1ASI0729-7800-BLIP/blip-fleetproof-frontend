@@ -65,6 +65,20 @@ import { CaseDialog } from "../components/case-dialog";
             <span [class]="'badge status-' + c.status">{{
               "cases." + c.status | translate
             }}</span>
+            @if (c.history.length) {
+              <details style="margin-top:12px">
+                <summary>{{ "cases.history" | translate }}</summary>
+                @for (revision of c.history; track $index) {
+                  <p>
+                    {{ revision.recordedAt }} · {{ revision.responsible }} ·
+                    {{ "cases." + revision.status | translate }}
+                  </p>
+                  @if (revision.evidence) {
+                    <p>{{ "common.evidence" | translate }}: {{ revision.evidence }}</p>
+                  }
+                }
+              </details>
+            }
           </div>
           <div class="actions">
             @if (c.reportId) {
@@ -101,6 +115,7 @@ export class CasesView {
     return this.vehicles.items().find((v) => v.id === id)?.plate || "—";
   }
   due(value: string): string {
+    if (!Number.isFinite(new Date(value + "T00:00:00Z").getTime())) return "—";
     return new Intl.DateTimeFormat(
       document.documentElement.lang === "en" ? "en-US" : "es-PE",
       { dateStyle: "medium", timeZone: "UTC" },

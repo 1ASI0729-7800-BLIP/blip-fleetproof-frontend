@@ -46,6 +46,7 @@ export class CaseAssembler implements BaseAssembler<
       c.evidence,
       c.notes,
       c.createdAt,
+      structuredClone(c.history ?? []),
     );
   }
   toResourceFromEntity(c: ResolutionCase): CaseData {
@@ -62,6 +63,7 @@ export class CaseAssembler implements BaseAssembler<
       evidence: c.evidence,
       notes: c.notes,
       createdAt: c.createdAt,
+      history: structuredClone(c.history),
     };
   }
   toEntitiesFromResponse(r: CasesResponse): ResolutionCase[] {

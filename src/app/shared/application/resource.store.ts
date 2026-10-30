@@ -37,10 +37,12 @@ export class ResourceStore<
     if (this.saving()) return null;
     this.saving.set(true);
     this.error.set(null);
+    const scope = this.scope;
     try {
       const saved = await firstValueFrom(
         entity.id ? this.endpoint.update(entity) : this.endpoint.create(entity),
       );
+      if (scope !== this.scope) return null;
       this.items.update((items) =>
         entity.id
           ? items.map((item) => (item.id === saved.id ? saved : item))
@@ -48,7 +50,7 @@ export class ResourceStore<
       );
       return saved;
     } catch {
-      this.error.set("common.saveError");
+      if (scope === this.scope) this.error.set("common.saveError");
       return null;
     } finally {
       this.saving.set(false);
