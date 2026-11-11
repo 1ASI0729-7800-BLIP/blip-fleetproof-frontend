@@ -38,10 +38,6 @@ import { IamStore } from "../../../iam/application/iam.store";
           >
         }
       </nav>
-      <div class="sidebar-bottom">
-        <span class="demo-dot"></span>{{ "common.demo" | translate
-        }}
-      </div>
     </aside>
     @if (menuOpen()) {
       <button
