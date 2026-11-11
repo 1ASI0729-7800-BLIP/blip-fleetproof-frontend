@@ -64,7 +64,7 @@ export class MonitoringStore extends ResourceStore<
         return;
       }
       const types: ("documentary" | "technical")[] = [];
-      if (previous && compareReports(previous, report).length)
+      if (previous ? compareReports(previous, report).length : report.findings.length)
         types.push("documentary");
       if (!report.complete) types.push("technical");
       for (const type of types) {

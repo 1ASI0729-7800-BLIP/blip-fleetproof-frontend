@@ -77,7 +77,7 @@ import { compareReports } from "../../domain/model/vehicle-report.entity";
                   <div class="finding" [class.high]="f.severity === 'high'">
                     <h3>{{ f.descriptionKey | translate }}</h3>
                     <p>{{ f.source }}</p>
-                    @if (r.id === report.id && newIds().has(f.id)) {
+                    @if (r.id === report.id && newIds().has(f.source + ':' + f.id)) {
                       <span class="badge status-open">{{
                         "report.newFinding" | translate
                       }}</span>
@@ -127,7 +127,7 @@ export class CompareView {
   readonly newIds = computed(() => {
     const p = this.previous(),
       c = this.current();
-    return new Set(p && c ? compareReports(p, c).map((f) => f.id) : []);
+    return new Set(p && c ? compareReports(p, c).map((f) => f.source + ":" + f.id) : []);
   });
   constructor() {
     inject(ActivatedRoute)
