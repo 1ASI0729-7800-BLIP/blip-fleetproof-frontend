@@ -28,7 +28,7 @@ import { ReportStore } from "../../application/report.store";
         <p>{{ "report.subtitle" | translate }}</p>
       </div>
     </div>
-    <div class="notice">{{ "common.simulated" | translate }}</div>
+
     <form class="inline-form" (ngSubmit)="query()">
       <mat-form-field appearance="outline"
         ><mat-label>{{ "vehicle.plate" | translate }}</mat-label
