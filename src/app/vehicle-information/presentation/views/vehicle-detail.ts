@@ -51,7 +51,7 @@ import { VehicleDialog } from "../components/vehicle-dialog";
           </button>
         </div>
       </div>
-      <div class="notice">{{ "common.simulated" | translate }}</div>
+
       <section class="section">
         <div class="section-body">
           <dl class="detail-grid">
