@@ -125,6 +125,13 @@
     "partialImport": "Import stopped. {{count}} vehicles were saved; check the list before retrying."
   },
   "report": {
+    "pagination": "Report pagination",
+    "pageRange": "{{start}}–{{end}} of {{total}} reports",
+    "pageNumber": "Page {{number}}",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "history": "Report history",
+    "filterPlate": "Filter by license plate",
     "title": "Vehicle reports",
     "subtitle": "Sources, findings and query history",
     "query": "Query by plate",
