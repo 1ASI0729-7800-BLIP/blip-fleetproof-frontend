@@ -7,6 +7,7 @@ export class Subscription implements BaseEntity {
     readonly plan: string,
     readonly vehicleLimit: number,
     readonly status: string,
+    readonly amount?: number,
   ) {}
 
   get active(): boolean {
