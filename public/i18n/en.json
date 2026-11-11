@@ -233,7 +233,7 @@
     "insurance": "Mandatory insurance nearing expiry (synthetic record)"
   },
   "subscription": {
-    "subtitle": "View your demo plan and vehicle usage.",
+    "subtitle": "Review your subscription and choose a monitoring plan.",
     "plan": "Plan",
     "status": "Status",
     "active": "Active",
@@ -241,6 +241,26 @@
     "vehicleLimit": "Vehicle limit",
     "usage": "Registered vehicles",
     "usageValue": "{{used}} of {{limit}}",
-    "empty": "This account has no subscription on record."
+    "empty": "This account has no subscription on record.",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "amount": "Simulated amount",
+    "fleetPlans": "Fleet monitoring plans",
+    "individualPlans": "Individual monitoring plans",
+    "capacity": "Up to {{limit}} monitored vehicle(s)",
+    "choosePlan": "Choose plan",
+    "paymentTitle": "Simulated QR payment",
+    "simulation": "This test QR does not charge you. Select “Payment confirmed” to activate the simulated plan.",
+    "qrAlt": "Simulated payment QR code",
+    "cancelPayment": "Cancel payment",
+    "confirmPayment": "Payment confirmed",
+    "qrError": "Could not generate the QR code. Choose the plan again.",
+    "activated": "Monitoring plan active.",
+    "period": {
+      "weekly": "every week",
+      "monthly": "every month",
+      "annual": "every year"
+    }
   }
 }

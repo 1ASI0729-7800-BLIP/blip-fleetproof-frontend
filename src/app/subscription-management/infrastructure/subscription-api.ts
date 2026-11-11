@@ -11,6 +11,7 @@ export interface SubscriptionData extends BaseResource {
   plan: string;
   vehicleLimit: number;
   status: string;
+  amount?: number;
 }
 
 export interface SubscriptionsResponse extends BaseResponse {
@@ -19,7 +20,7 @@ export interface SubscriptionsResponse extends BaseResponse {
 
 class SubscriptionAssembler implements BaseAssembler<Subscription, SubscriptionData, SubscriptionsResponse> {
   toEntityFromResource(data: SubscriptionData): Subscription {
-    return new Subscription(data.id, data.userId, data.plan, data.vehicleLimit, data.status);
+    return new Subscription(data.id, data.userId, data.plan, data.vehicleLimit, data.status, data.amount);
   }
 
   toResourceFromEntity(subscription: Subscription): SubscriptionData {
@@ -29,6 +30,7 @@ class SubscriptionAssembler implements BaseAssembler<Subscription, SubscriptionD
       plan: subscription.plan,
       vehicleLimit: subscription.vehicleLimit,
       status: subscription.status,
+      amount: subscription.amount,
     };
   }
 

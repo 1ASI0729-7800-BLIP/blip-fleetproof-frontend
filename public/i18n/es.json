@@ -233,7 +233,7 @@
     "insurance": "Seguro obligatorio próximo a vencer (registro sintético)"
   },
   "subscription": {
-    "subtitle": "Consulta tu plan de demostración y el uso de vehículos.",
+    "subtitle": "Consulta tu suscripción y elige un plan de monitoreo.",
     "plan": "Plan",
     "status": "Estado",
     "active": "Activa",
@@ -241,6 +241,26 @@
     "vehicleLimit": "Límite de vehículos",
     "usage": "Vehículos registrados",
     "usageValue": "{{used}} de {{limit}}",
-    "empty": "Esta cuenta no tiene una suscripción registrada."
+    "empty": "Esta cuenta no tiene una suscripción registrada.",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "amount": "Monto simulado",
+    "fleetPlans": "Planes de monitoreo de flotas",
+    "individualPlans": "Planes de monitoreo individual",
+    "capacity": "Hasta {{limit}} vehículo(s) en monitoreo",
+    "choosePlan": "Elegir plan",
+    "paymentTitle": "Pago simulado por QR",
+    "simulation": "Este QR es de prueba y no realiza cobros. Pulsa «Pago confirmado» para activar el plan simulado.",
+    "qrAlt": "Código QR del pago simulado",
+    "cancelPayment": "Cancelar pago",
+    "confirmPayment": "Pago confirmado",
+    "qrError": "No se pudo generar el QR. Vuelve a elegir el plan.",
+    "activated": "Plan de monitoreo activo.",
+    "period": {
+      "weekly": "cada semana",
+      "monthly": "cada mes",
+      "annual": "cada año"
+    }
   }
 }
