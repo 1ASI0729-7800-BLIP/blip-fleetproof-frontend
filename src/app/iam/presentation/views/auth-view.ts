@@ -87,13 +87,6 @@ import { IamStore } from "../../application/iam.store";
           </a>
         </p>
 
-        @if (!register) {
-          <p class="notice">{{ "auth.demoCredentials" | translate }}</p>
-        }
-
-        <p class="muted" style="font-size:11px">
-          {{ "auth.demoAuth" | translate }}
-        </p>
       </section>
     </div>
   `,
