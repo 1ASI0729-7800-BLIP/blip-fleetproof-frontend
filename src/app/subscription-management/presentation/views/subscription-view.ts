@@ -38,7 +38,11 @@ import { SubscriptionStore } from "../../application/subscription.store";
                 <span role="alert">{{ "common.loadError" | translate }}</span>
                 <button mat-button (click)="load()">{{ "common.retry" | translate }}</button>
               } @else {
-                {{ "subscription.usageValue" | translate: { used: vehicleCount(), limit: subscription.vehicleLimit } }}
+                <strong>{{ "subscription.usageValue" | translate: { used: vehicleCount(), limit: subscription.vehicleLimit } }}</strong>
+                @if (subscription.vehicleLimit > 0) {
+                  <progress [value]="vehicleCount()" [max]="subscription.vehicleLimit"
+                    [attr.aria-label]="'subscription.usage' | translate"></progress>
+                }
               }
             </dd>
           </dl>
@@ -51,6 +55,7 @@ import { SubscriptionStore } from "../../application/subscription.store";
   styles: [`
     dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: .5rem 1rem; margin: 0; }
     dt { font-weight: 600; }
+    progress { display: block; width: 100%; margin-block-start: .5rem; accent-color: #087f8c; }
     dd { margin: 0 0 .75rem; overflow-wrap: anywhere; }
   `],
 })
