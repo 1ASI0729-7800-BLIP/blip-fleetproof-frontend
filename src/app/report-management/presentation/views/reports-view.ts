@@ -53,6 +53,13 @@ import { ReportStore } from "../../application/report.store";
       <p class="error" role="alert">{{ queryError()! | translate }}</p>
     }
     <section class="section">
+      <div class="section-heading">
+        <h2>{{ "report.history" | translate }}</h2>
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>{{ "report.filterPlate" | translate }}</mat-label>
+          <input matInput [ngModel]="historyPlate()" (ngModelChange)="historyPlate.set($event)" />
+        </mat-form-field>
+      </div>
       <app-state-message
         [loading]="store.loading()"
         [error]="store.error()"
@@ -115,8 +122,11 @@ export class ReportsView {
   private readonly router = inject(Router);
   plate = "";
   readonly queryError = signal<string | null>(null);
+  readonly historyPlate = signal("");
   readonly sorted = computed(() =>
-    [...this.store.items()].sort((a, b) =>
+    this.store.items().filter((report) =>
+      report.plate.toUpperCase().includes(this.historyPlate().trim().toUpperCase()),
+    ).sort((a, b) =>
       b.createdAt.localeCompare(a.createdAt),
     ),
   );
