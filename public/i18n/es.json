@@ -44,6 +44,7 @@
     "vehicles": "vehículos"
   },
   "nav": {
+    "subscription": "Suscripción",
     "main": "Navegación principal",
     "workspace": "Espacio de trabajo",
     "dashboard": "Dashboard",
@@ -197,5 +198,16 @@
     "unpaid": "Papeleta pendiente de pago (registro sintético)",
     "expiring": "Revisión técnica próxima a vencer (registro sintético)",
     "insurance": "Seguro obligatorio próximo a vencer (registro sintético)"
+  },
+  "subscription": {
+    "subtitle": "Consulta tu plan de demostración y el uso de vehículos.",
+    "plan": "Plan",
+    "status": "Estado",
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "vehicleLimit": "Límite de vehículos",
+    "usage": "Vehículos registrados",
+    "usageValue": "{{used}} de {{limit}}",
+    "empty": "Esta cuenta no tiene una suscripción registrada."
   }
 }

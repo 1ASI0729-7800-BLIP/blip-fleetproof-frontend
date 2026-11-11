@@ -99,6 +99,7 @@ export class Workspace {
     { path: "/monitoring", icon: "history", key: "nav.monitoring" },
     { path: "/alerts", icon: "bell", key: "nav.alerts" },
     { path: "/cases", icon: "clipboard-check", key: "nav.cases" },
+    { path: "/subscription", icon: "file-text", key: "nav.subscription" },
     { path: "/profile", icon: "user", key: "nav.profile" },
   ];
 }

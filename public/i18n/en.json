@@ -44,6 +44,7 @@
     "vehicles": "vehicles"
   },
   "nav": {
+    "subscription": "Subscription",
     "main": "Main navigation",
     "workspace": "Workspace",
     "dashboard": "Dashboard",
@@ -197,5 +198,16 @@
     "unpaid": "Unpaid traffic fine (synthetic record)",
     "expiring": "Technical inspection nearing expiry (synthetic record)",
     "insurance": "Mandatory insurance nearing expiry (synthetic record)"
+  },
+  "subscription": {
+    "subtitle": "View your demo plan and vehicle usage.",
+    "plan": "Plan",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "vehicleLimit": "Vehicle limit",
+    "usage": "Registered vehicles",
+    "usageValue": "{{used}} of {{limit}}",
+    "empty": "This account has no subscription on record."
   }
 }

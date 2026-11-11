@@ -22,6 +22,13 @@ export const routes: Routes = [
     children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
       { path: "dashboard", component: Dashboard },
+      {
+        path: "subscription",
+        loadComponent: () =>
+          import("./subscription-management/presentation/views/subscription-view").then(
+            (module) => module.SubscriptionView,
+          ),
+      },
       { path: "profile", component: ProfileView },
       { path: "vehicles", component: VehiclesView },
       { path: "vehicles/:id", component: VehicleDetail },

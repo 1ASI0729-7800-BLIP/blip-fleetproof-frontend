@@ -9,5 +9,6 @@ export const environment = {
   platformProviderCasesEndpointPath: "/cases",
   platformProviderMonitoringEndpointPath: "/monitoring",
   platformProviderAlertsEndpointPath: "/alerts",
+  platformProviderSubscriptionsEndpointPath: "/subscriptions",
   demo: true,
 };
