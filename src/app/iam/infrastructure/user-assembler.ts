@@ -1,4 +1,4 @@
-import { User } from "../domain/model/user.entity";
+import { AccountType, User } from "../domain/model/user.entity";
 import { BaseAssembler } from "../../shared/infrastructure/base-assembler";
 import {
   BaseResource,
@@ -13,6 +13,7 @@ export interface UserResource extends BaseResource {
   email: string;
   organization: string;
   passwordHash?: string;
+  accountType?: AccountType;
 }
 
 /**
@@ -36,7 +37,7 @@ export class UserAssembler implements BaseAssembler<
    * @returns {User}
    */
   toEntityFromResource(r: UserResource): User {
-    return new User(r.id, r.name, r.email, r.organization);
+    return new User(r.id, r.name, r.email, r.organization, r.accountType);
   }
 
   /**
@@ -49,6 +50,7 @@ export class UserAssembler implements BaseAssembler<
       name: u.name,
       email: u.email,
       organization: u.organization,
+      accountType: u.accountType,
     };
   }
 

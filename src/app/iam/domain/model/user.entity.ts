@@ -31,7 +31,7 @@ export class User implements BaseEntity {
    * @param {string} email
    * @param {string} organization
    */
-  constructor(id: number, name: string, email: string, organization: string) {
+  constructor(id: number, name: string, email: string, organization: string, readonly accountType?: AccountType) {
     this.#id = id;
     this.#name = name;
     this.#email = email;
@@ -50,7 +50,10 @@ export interface Credentials {
 /**
  * @description Data transfer object for new user registration.
  */
+export type AccountType = "personal" | "company";
+
 export interface Registration extends Credentials {
+  accountType: AccountType;
   name: string;
   organization: string;
 }

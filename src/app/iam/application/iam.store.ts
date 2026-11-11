@@ -76,7 +76,7 @@ export class IamStore {
     try {
       this.persist(
         await this.api.update(
-          new User(current.id, name, current.email, organization),
+          new User(current.id, name, current.email, organization, current.accountType),
         ),
       );
       return true;
@@ -103,6 +103,7 @@ export class IamStore {
         name: user.name,
         email: user.email,
         organization: user.organization,
+        accountType: user.accountType,
       }),
     );
   }
@@ -116,7 +117,7 @@ export class IamStore {
       Number.isInteger(raw.id) &&
       raw.id > 0 &&
       typeof raw.email === "string"
-        ? new User(raw.id, raw.name, raw.email, raw.organization)
+        ? new User(raw.id, raw.name, raw.email, raw.organization, raw.accountType)
         : null;
     } catch {
       return null;

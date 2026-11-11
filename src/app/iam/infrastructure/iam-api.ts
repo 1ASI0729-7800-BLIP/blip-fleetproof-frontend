@@ -50,7 +50,8 @@ export class IamApi extends BaseApi {
       this.http.post<UserResource>(this.url, {
         name: data.name.trim(),
         email,
-        organization: data.organization.trim(),
+        organization: data.accountType === "company" ? data.organization.trim() : "",
+        accountType: data.accountType,
         passwordHash: await this.hash(data.password),
       }),
     );
