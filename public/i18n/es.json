@@ -122,6 +122,11 @@
     "partialImport": "La importación se detuvo. {{count}} vehículos quedaron guardados; revisa la lista antes de reintentar."
   },
   "report": {
+    "pagination": "Paginación de reportes",
+    "pageRange": "{{start}}–{{end}} de {{total}} reportes",
+    "pageNumber": "Página {{number}}",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
     "history": "Historial de reportes",
     "filterPlate": "Filtrar por placa",
     "title": "Reportes vehiculares",

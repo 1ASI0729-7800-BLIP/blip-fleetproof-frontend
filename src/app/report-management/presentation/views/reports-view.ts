@@ -57,7 +57,7 @@ import { ReportStore } from "../../application/report.store";
         <h2>{{ "report.history" | translate }}</h2>
         <mat-form-field appearance="outline" subscriptSizing="dynamic">
           <mat-label>{{ "report.filterPlate" | translate }}</mat-label>
-          <input matInput [ngModel]="historyPlate()" (ngModelChange)="historyPlate.set($event)" />
+          <input matInput [ngModel]="historyPlate()" (ngModelChange)="filterHistory($event)" />
         </mat-form-field>
       </div>
       <app-state-message
@@ -72,6 +72,7 @@ import { ReportStore } from "../../application/report.store";
             <thead>
               <tr>
                 <th>{{ "vehicle.plate" | translate }}</th>
+                <th>{{ "vehicle.brand" | translate }} / {{ "vehicle.model" | translate }}</th>
                 <th>{{ "report.snapshot" | translate }}</th>
                 <th>{{ "common.date" | translate }}</th>
                 <th>{{ "vehicle.risk" | translate }}</th>
@@ -80,9 +81,10 @@ import { ReportStore } from "../../application/report.store";
               </tr>
             </thead>
             <tbody>
-              @for (r of sorted(); track r.id) {
+              @for (r of pageReports(); track r.id) {
                 <tr>
                   <td class="plate">{{ r.plate }}</td>
+                  <td>{{ vehicleNames().get(r.vehicleId) ?? "—" }}</td>
                   <td>v{{ r.version }}</td>
                   <td>{{ language.date(r.createdAt) }}</td>
                   <td><app-risk-badge [risk]="r.risk" /></td>
@@ -111,8 +113,36 @@ import { ReportStore } from "../../application/report.store";
             </tbody>
           </table>
         </div>
+        <nav class="report-pagination" [attr.aria-label]="'report.pagination' | translate">
+          <span aria-live="polite">{{ "report.pageRange" | translate: {
+            start: pageStart() + 1, end: pageStart() + pageReports().length, total: sorted().length
+          } }}</span>
+          <div class="page-buttons">
+            <button mat-icon-button type="button" [disabled]="page() === 1"
+              [attr.aria-label]="'report.previousPage' | translate" (click)="selectedPage.set(page() - 1)">
+              <lucide-icon name="arrow-left" size="16" />
+            </button>
+            @for (number of pageNumbers(); track number) {
+              <button mat-stroked-button type="button" [class.current]="page() === number"
+                [attr.aria-current]="page() === number ? 'page' : null"
+                [attr.aria-label]="'report.pageNumber' | translate: { number }"
+                (click)="selectedPage.set(number)">{{ number }}</button>
+            }
+            <button mat-icon-button type="button" [disabled]="page() === pageCount()"
+              [attr.aria-label]="'report.nextPage' | translate" (click)="selectedPage.set(page() + 1)">
+              <lucide-icon name="arrow-right" size="16" />
+            </button>
+          </div>
+        </nav>
       }
     </section>`,
+  styles: [`
+    .report-pagination { display: flex; align-items: center; justify-content: space-between;
+      gap: .75rem; padding: .75rem 1rem; flex-wrap: wrap; border-top: 1px solid #dce6ec; }
+    .page-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+    .page-buttons button[mat-stroked-button] { min-width: 2.25rem; padding-inline: .5rem; }
+    .page-buttons .current { background: #dbf0f0; color: #095361; }
+  `],
 })
 export class ReportsView {
   readonly store = inject(ReportStore);
@@ -127,9 +157,25 @@ export class ReportsView {
     this.store.items().filter((report) =>
       report.plate.toUpperCase().includes(this.historyPlate().trim().toUpperCase()),
     ).sort((a, b) =>
-      b.createdAt.localeCompare(a.createdAt),
+      b.createdAt.localeCompare(a.createdAt) || b.id - a.id,
     ),
   );
+  readonly pageSize = 10;
+  readonly selectedPage = signal(1);
+  readonly pageCount = computed(() => Math.max(1, Math.ceil(this.sorted().length / this.pageSize)));
+  readonly page = computed(() => Math.min(this.selectedPage(), this.pageCount()));
+  readonly pageNumbers = computed(() => Array.from({ length: this.pageCount() }, (_, index) => index + 1));
+  readonly pageStart = computed(() => (this.page() - 1) * this.pageSize);
+  readonly pageReports = computed(() => this.sorted().slice(this.pageStart(), this.pageStart() + this.pageSize));
+  readonly vehicleNames = computed(() => new Map(
+    this.vehicles.items().map((vehicle) => [vehicle.id, `${vehicle.brand} ${vehicle.model}`]),
+  ));
+
+  filterHistory(value: string): void {
+    this.historyPlate.set(value);
+    this.selectedPage.set(1);
+  }
+
   constructor() {
     void this.load();
   }

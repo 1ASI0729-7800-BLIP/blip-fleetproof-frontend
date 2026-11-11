@@ -80,6 +80,126 @@
       "responsible": "Sebastian Reyes",
       "vin": "DEMO0000000000006",
       "owner": "BLIP Demo"
+    },
+    {
+      "id": 100,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-201",
+      "brand": "Mazda",
+      "model": "CX-5",
+      "year": 2020,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 101,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-202",
+      "brand": "Ford",
+      "model": "Ranger",
+      "year": 2021,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 102,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-203",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2022,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 103,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-204",
+      "brand": "Volkswagen",
+      "model": "Polo",
+      "year": 2023,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 104,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-205",
+      "brand": "Renault",
+      "model": "Duster",
+      "year": 2024,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 105,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-206",
+      "brand": "Mitsubishi",
+      "model": "L200",
+      "year": 2025,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 106,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-207",
+      "brand": "Subaru",
+      "model": "Forester",
+      "year": 2020,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 107,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-208",
+      "brand": "Peugeot",
+      "model": "208",
+      "year": 2021,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 108,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-209",
+      "brand": "Fiat",
+      "model": "Argo",
+      "year": 2022,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
+    },
+    {
+      "id": 109,
+      "userId": 1,
+      "fleetId": 0,
+      "plate": "DEM-210",
+      "brand": "BMW",
+      "model": "X1",
+      "year": 2023,
+      "responsible": "",
+      "vin": "",
+      "owner": "Demo"
     }
   ],
   "reports": [
@@ -374,6 +494,880 @@
               "source": "SOAT"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "userId": 1,
+      "vehicleId": 100,
+      "plate": "DEM-201",
+      "version": 1,
+      "createdAt": "2026-10-20T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-20T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-20T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-20T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-20T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "userId": 1,
+      "vehicleId": 101,
+      "plate": "DEM-202",
+      "version": 1,
+      "createdAt": "2026-10-21T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-21T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-21T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-21T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-21T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "userId": 1,
+      "vehicleId": 102,
+      "plate": "DEM-203",
+      "version": 1,
+      "createdAt": "2026-10-21T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-21T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-21T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-21T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-21T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "userId": 1,
+      "vehicleId": 103,
+      "plate": "DEM-204",
+      "version": 1,
+      "createdAt": "2026-10-22T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-22T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-22T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-22T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-22T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "userId": 1,
+      "vehicleId": 104,
+      "plate": "DEM-205",
+      "version": 1,
+      "createdAt": "2026-10-22T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-22T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-22T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-22T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-22T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "userId": 1,
+      "vehicleId": 105,
+      "plate": "DEM-206",
+      "version": 1,
+      "createdAt": "2026-10-23T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-23T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-23T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-23T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-23T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "userId": 1,
+      "vehicleId": 106,
+      "plate": "DEM-207",
+      "version": 1,
+      "createdAt": "2026-10-23T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-23T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-23T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-23T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-23T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "userId": 1,
+      "vehicleId": 107,
+      "plate": "DEM-208",
+      "version": 1,
+      "createdAt": "2026-10-24T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-24T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-24T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-24T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-24T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "userId": 1,
+      "vehicleId": 108,
+      "plate": "DEM-209",
+      "version": 1,
+      "createdAt": "2026-10-24T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-24T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-24T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-24T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-24T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "userId": 1,
+      "vehicleId": 109,
+      "plate": "DEM-210",
+      "version": 1,
+      "createdAt": "2026-10-25T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-25T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-25T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-25T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-25T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "userId": 1,
+      "vehicleId": 100,
+      "plate": "DEM-201",
+      "version": 2,
+      "createdAt": "2026-10-25T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-25T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-25T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-25T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-25T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "userId": 1,
+      "vehicleId": 101,
+      "plate": "DEM-202",
+      "version": 2,
+      "createdAt": "2026-10-26T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-26T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-26T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-26T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-26T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "userId": 1,
+      "vehicleId": 102,
+      "plate": "DEM-203",
+      "version": 2,
+      "createdAt": "2026-10-26T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-26T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-26T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-26T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-26T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "userId": 1,
+      "vehicleId": 103,
+      "plate": "DEM-204",
+      "version": 2,
+      "createdAt": "2026-10-27T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-27T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-27T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-27T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-27T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "userId": 1,
+      "vehicleId": 104,
+      "plate": "DEM-205",
+      "version": 2,
+      "createdAt": "2026-10-27T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-27T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-27T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-27T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-27T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "userId": 1,
+      "vehicleId": 105,
+      "plate": "DEM-206",
+      "version": 2,
+      "createdAt": "2026-10-28T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-28T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-28T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-28T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-28T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "userId": 1,
+      "vehicleId": 106,
+      "plate": "DEM-207",
+      "version": 2,
+      "createdAt": "2026-10-28T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-28T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-28T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-28T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-28T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "userId": 1,
+      "vehicleId": 107,
+      "plate": "DEM-208",
+      "version": 2,
+      "createdAt": "2026-10-29T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-29T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-29T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-29T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-29T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "userId": 1,
+      "vehicleId": 108,
+      "plate": "DEM-209",
+      "version": 2,
+      "createdAt": "2026-10-29T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-29T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-29T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-29T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-29T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "userId": 1,
+      "vehicleId": 109,
+      "plate": "DEM-210",
+      "version": 2,
+      "createdAt": "2026-10-30T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-30T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-30T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-30T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-30T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "userId": 1,
+      "vehicleId": 100,
+      "plate": "DEM-201",
+      "version": 3,
+      "createdAt": "2026-10-30T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-30T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "unavailable",
+          "checkedAt": "2026-10-30T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-30T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-30T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "userId": 1,
+      "vehicleId": 101,
+      "plate": "DEM-202",
+      "version": 3,
+      "createdAt": "2026-10-31T02:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-31T02:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-31T02:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-31T02:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-31T02:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "userId": 1,
+      "vehicleId": 102,
+      "plate": "DEM-203",
+      "version": 3,
+      "createdAt": "2026-10-31T14:00:00.000Z",
+      "sources": [
+        {
+          "name": "SUNARP",
+          "status": "available",
+          "checkedAt": "2026-10-31T14:00:00.000Z",
+          "evidence": "demo-sunarp",
+          "findings": []
+        },
+        {
+          "name": "SAT",
+          "status": "available",
+          "checkedAt": "2026-10-31T14:00:00.000Z",
+          "evidence": "demo-sat",
+          "findings": []
+        },
+        {
+          "name": "CITV",
+          "status": "available",
+          "checkedAt": "2026-10-31T14:00:00.000Z",
+          "evidence": "demo-citv",
+          "findings": []
+        },
+        {
+          "name": "SOAT",
+          "status": "available",
+          "checkedAt": "2026-10-31T14:00:00.000Z",
+          "evidence": "demo-soat",
+          "findings": []
         }
       ]
     }
