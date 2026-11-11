@@ -87,7 +87,7 @@ import { Finding } from "../../domain/model/vehicle-report.entity";
                     {{ "report.evidenceLabel" | translate }} · {{ s.evidence }}
                   </p>
                 }
-                @for (f of s.findings; track f.id) {
+                @for (f of s.status === 'available' ? s.findings : []; track f.id) {
                   <div class="finding" [class.high]="f.severity === 'high'">
                     <h3>{{ f.descriptionKey | translate }}</h3>
                     <p>

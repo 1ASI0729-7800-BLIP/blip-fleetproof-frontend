@@ -455,7 +455,7 @@ tbody tr:hover {
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px 18px;
+  gap: 20px 18px;
 }
 .form-grid .full {
   grid-column: 1/-1;

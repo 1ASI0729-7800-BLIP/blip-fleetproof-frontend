@@ -17,9 +17,11 @@ export class LanguageStore {
     this.translate.use(selected);
   }
   date(value: string): string {
+    const date = new Date(value);
+    if (!Number.isFinite(date.getTime())) return "—";
     return new Intl.DateTimeFormat(
       this.current() === "es" ? "es-PE" : "en-US",
       { dateStyle: "medium", timeStyle: "short" },
-    ).format(new Date(value));
+    ).format(date);
   }
 }
