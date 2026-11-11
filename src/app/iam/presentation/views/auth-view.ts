@@ -22,8 +22,7 @@ import { IamStore } from "../../application/iam.store";
         <app-language-switcher />
 
         <div class="brand">
-          <lucide-icon name="shield-check" size="30" />
-          <span>Fleet<span class="brand-accent">Proof</span><small>BLIP</small></span>
+          <span class="brand-logo"><img src="assets/fleetproof-logo.png" alt="FleetProof" /></span>
         </div>
 
         <h1>{{ (register ? "auth.newAccount" : "auth.signIn") | translate }}</h1>
