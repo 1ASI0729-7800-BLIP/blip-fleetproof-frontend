@@ -20,11 +20,9 @@ import { IamStore } from "../../../iam/application/iam.store";
   changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <div class="workspace">
     <aside class="sidebar" [class.open]="menuOpen()">
-      <a class="brand" routerLink="/dashboard"
-        ><lucide-icon name="shield-check" size="30" /><span
-          >Fleet<span class="brand-accent">Proof</span><small>BLIP</small></span
-        ></a
-      >
+      <a class="brand" routerLink="/dashboard">
+        <span class="brand-logo"><img src="assets/fleetproof-logo.png" alt="FleetProof" /></span>
+      </a>
       <div class="workspace-label">{{ "nav.workspace" | translate }}</div>
       <nav [attr.aria-label]="'nav.main' | translate">
         @for (item of links; track item.path) {
@@ -56,9 +54,9 @@ import { IamStore } from "../../../iam/application/iam.store";
         >
           <lucide-icon name="menu" />
         </button>
-        <a routerLink="/dashboard" class="mobile-brand"
-          >Fleet<span class="brand-accent">Proof</span></a
-        >
+        <a routerLink="/dashboard" class="mobile-brand">
+          <span class="brand-logo"><img src="assets/fleetproof-logo.png" alt="FleetProof" /></span>
+        </a>
         <span class="topbar-context"
           >{{ "nav.workspace" | translate }}
           <lucide-icon name="chevron-right" size="15" />
