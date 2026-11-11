@@ -40,7 +40,7 @@ import { IamStore } from "../../../iam/application/iam.store";
       </nav>
       <div class="sidebar-bottom">
         <span class="demo-dot"></span>{{ "common.demo" | translate
-        }}<small>TB1 · Sprint 2</small>
+        }}
       </div>
     </aside>
     @if (menuOpen()) {
@@ -84,7 +84,7 @@ import { IamStore } from "../../../iam/application/iam.store";
       </header>
       <main class="page-content"><router-outlet /></main>
       <footer>
-        FleetProof · BLIP <span>{{ "common.demo" | translate }}</span>
+        FleetProof · BLIP
       </footer>
     </section>
   </div>`,
@@ -94,7 +94,8 @@ export class Workspace {
   readonly menuOpen = signal(false);
   readonly links = [
     { path: "/dashboard", icon: "layout-dashboard", key: "nav.dashboard" },
-    { path: "/vehicles", icon: "truck", key: "nav.fleet" },
+    { path: "/vehicles", icon: "search", key: "nav.myVehicles" },
+    { path: "/fleet", icon: "truck", key: "nav.fleet" },
     { path: "/reports", icon: "file-text", key: "nav.reports" },
     { path: "/monitoring", icon: "history", key: "nav.monitoring" },
     { path: "/alerts", icon: "bell", key: "nav.alerts" },
