@@ -177,25 +177,6 @@ button lucide-icon {
 .sidebar nav a.active lucide-icon {
   color: var(--accent);
 }
-.sidebar-bottom {
-  margin-top: auto;
-  padding: 20px 10px 0;
-  border-top: 1px solid var(--line);
-  font-size: 12px;
-  color: var(--muted);
-}
-.sidebar-bottom small {
-  display: block;
-  margin-top: 8px;
-}
-.demo-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--warning);
-  border-radius: 50%;
-  margin-right: 7px;
-}
 .main-area {
   margin-left: 244px;
   flex: 1;
