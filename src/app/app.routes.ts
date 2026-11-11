@@ -37,6 +37,13 @@ export const routes: Routes = [
       { path: "reports/:id", component: ReportDetail },
       { path: "monitoring", component: MonitoringView },
       { path: "alerts", component: AlertsView },
+      {
+        path: "fleet",
+        loadComponent: () =>
+          import("./fleet-management/presentation/views/fleets-view").then(
+            (module) => module.FleetsView,
+          ),
+      },
       { path: "cases", component: CasesView },
     ],
   },

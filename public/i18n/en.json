@@ -44,6 +44,9 @@
     "vehicles": "vehicles"
   },
   "nav": {
+    "myVehicles": "My vehicles",
+    "fleetDescription": "Organize fleets, review their vehicles, and open resolution cases.",
+    "firstFleet": "Create a fleet to group your vehicles.",
     "subscription": "Subscription",
     "main": "Main navigation",
     "workspace": "Workspace",
@@ -76,6 +79,7 @@
     "profileSubtitle": "Your demo account details"
   },
   "dashboard": {
+    "viewReportHistory": "View full history",
     "greeting": "Hello, {{name}}",
     "overview": "Look up vehicles and review risks and alerts for your account.",
     "mediumRisk": "Medium risk",
@@ -87,7 +91,7 @@
     "planAction": "Check your plan and usage",
     "vehicleInformation": "Vehicle information",
     "vehicleAction": "Find and review registered vehicles",
-    "fleetAction": "Manage resolution cases",
+    "fleetAction": "Organize fleets and review cases",
     "reportAction": "Look up a plate or review report history",
     "monitorAction": "Start monitoring and review changes",
     "subtitle": "Fleet status and pending findings",

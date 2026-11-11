@@ -94,7 +94,8 @@ export class Workspace {
   readonly menuOpen = signal(false);
   readonly links = [
     { path: "/dashboard", icon: "layout-dashboard", key: "nav.dashboard" },
-    { path: "/vehicles", icon: "truck", key: "nav.fleet" },
+    { path: "/vehicles", icon: "search", key: "nav.myVehicles" },
+    { path: "/fleet", icon: "truck", key: "nav.fleet" },
     { path: "/reports", icon: "file-text", key: "nav.reports" },
     { path: "/monitoring", icon: "history", key: "nav.monitoring" },
     { path: "/alerts", icon: "bell", key: "nav.alerts" },

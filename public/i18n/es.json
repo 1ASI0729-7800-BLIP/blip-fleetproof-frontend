@@ -44,6 +44,9 @@
     "vehicles": "vehículos"
   },
   "nav": {
+    "myVehicles": "Mis vehículos",
+    "fleetDescription": "Organiza tus flotas, revisa sus vehículos y accede a los casos de resolución.",
+    "firstFleet": "Crea una flota para agrupar tus vehículos.",
     "subscription": "Suscripción",
     "main": "Navegación principal",
     "workspace": "Espacio de trabajo",
@@ -76,6 +79,7 @@
     "profileSubtitle": "Datos de tu cuenta de demostración"
   },
   "dashboard": {
+    "viewReportHistory": "Ver historial completo",
     "greeting": "Hola, {{name}}",
     "overview": "Consulta vehículos y revisa los riesgos y alertas de tu cuenta.",
     "mediumRisk": "Riesgo medio",
@@ -87,7 +91,7 @@
     "planAction": "Consulta tu plan y consumo",
     "vehicleInformation": "Información vehicular",
     "vehicleAction": "Busca y revisa vehículos registrados",
-    "fleetAction": "Gestiona casos de resolución",
+    "fleetAction": "Organiza flotas y revisa casos",
     "reportAction": "Consulta una placa o revisa el historial",
     "monitorAction": "Activa el seguimiento y revisa cambios",
     "subtitle": "Estado de tu flota y observaciones pendientes",

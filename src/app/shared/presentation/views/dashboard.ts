@@ -2,7 +2,6 @@ import {
   Component,
   computed,
   inject,
-  signal,
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
@@ -12,13 +11,12 @@ import { StateMessage } from "../components/state-message";
 import { RiskBadge } from "../components/risk-badge";
 import { LanguageStore } from "../../application/language.store";
 import { VehicleStore } from "../../../vehicle-information/application/vehicle.store";
-import { VehicleTable } from "../../../vehicle-information/presentation/components/vehicle-table";
 import { VehicleDialog } from "../../../vehicle-information/presentation/components/vehicle-dialog";
 import { ReportStore } from "../../../report-management/application/report.store";
 import { IamStore } from "../../../iam/application/iam.store";
 import { AlertStore } from "../../../vehicle-monitoring/application/alert.store";
 @Component({
-  imports: [...UI_IMPORTS, RouterLink, StateMessage, VehicleTable, RiskBadge],
+  imports: [...UI_IMPORTS, RouterLink, StateMessage, RiskBadge],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <header class="dashboard-hero">
@@ -43,61 +41,44 @@ import { AlertStore } from "../../../vehicle-monitoring/application/alert.store"
       }
     </div>
 
-    <div class="dashboard-detail">
-      <section class="section">
-        <div class="section-heading">
-          <h2>{{ "dashboard.fleetTitle" | translate }}</h2>
-          <a mat-button routerLink="/vehicles">{{ "dashboard.viewAll" | translate }}<lucide-icon name="arrow-right" size="16" /></a>
-        </div>
-        <app-state-message [loading]="fleetLoading()" [error]="fleetError()" (retry)="load()" />
-        @if (!fleetLoading() && !fleetError()) {
-          @if (vehicles.items().length) {
-            <div class="risk-filters" [attr.aria-label]="'vehicle.risk' | translate" role="group">
-              @for (filter of filters; track filter.value) {
-                <button mat-button type="button" [class.selected]="riskFilter() === filter.value"
-                  [attr.aria-pressed]="riskFilter() === filter.value" (click)="riskFilter.set(filter.value)">
-                  {{ filter.label | translate }}
-                </button>
-              }
-            </div>
-            @if (visibleVehicles().length) {
-              <app-vehicle-table [vehicles]="visibleVehicles()" [reports]="reports.items()" />
-            } @else {
-              <app-state-message [empty]="true" />
-            }
-          } @else {
-            <div class="dashboard-empty">
-              <lucide-icon name="truck" size="26" />
-              <p>{{ "dashboard.firstVehicle" | translate }}</p>
-              <button mat-stroked-button (click)="add()">{{ "vehicle.add" | translate }}</button>
-            </div>
-          }
+    <section class="section dashboard-history">
+      <div class="section-heading">
+        <h2>{{ "dashboard.recentReports" | translate }}</h2>
+        <a mat-button routerLink="/reports">{{ "dashboard.viewReportHistory" | translate }}<lucide-icon name="arrow-right" size="16" /></a>
+      </div>
+      <app-state-message [loading]="reports.loading()" [error]="reports.error()" (retry)="load()" />
+      @if (!reports.loading() && !reports.error()) {
+        @if (recent().length) {
+          <div class="table-scroll">
+            <table>
+              <thead><tr>
+                <th>{{ "vehicle.plate" | translate }}</th>
+                <th>{{ "vehicle.brand" | translate }} / {{ "vehicle.model" | translate }}</th>
+                <th>{{ "common.date" | translate }}</th>
+                <th>{{ "common.status" | translate }}</th>
+                <th>{{ "vehicle.risk" | translate }}</th>
+              </tr></thead>
+              <tbody>
+                @for (report of recent(); track report.id) {
+                  <tr>
+                    <td><a class="plate" [routerLink]="['/reports', report.id]">{{ report.plate }}</a> <small>v{{ report.version }}</small></td>
+                    <td>{{ vehicleNames().get(report.vehicleId) ?? "—" }}</td>
+                    <td>{{ language.date(report.createdAt) }}</td>
+                    <td>{{ (report.complete ? "report.complete" : "report.partial") | translate }}</td>
+                    <td><app-risk-badge [risk]="report.risk" /></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        } @else {
+          <div class="dashboard-empty">
+            <p>{{ "dashboard.firstReport" | translate }}</p>
+            <a mat-stroked-button routerLink="/reports">{{ "dashboard.quickQuery" | translate }}</a>
+          </div>
         }
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <h2>{{ "dashboard.recentReports" | translate }}</h2>
-          <a mat-button routerLink="/reports">{{ "dashboard.viewAll" | translate }}</a>
-        </div>
-        <app-state-message [loading]="reports.loading()" [error]="reports.error()" (retry)="load()" />
-        @if (!reports.loading() && !reports.error()) {
-          @for (report of recent(); track report.id) {
-            <a class="row-link" [routerLink]="['/reports', report.id]">
-              <div><strong>{{ report.plate }}</strong>
-                <span class="secondary">v{{ report.version }} · {{ language.date(report.createdAt) }}</span>
-              </div>
-              <app-risk-badge [risk]="report.risk" />
-            </a>
-          } @empty {
-            <div class="dashboard-empty">
-              <p>{{ "dashboard.firstReport" | translate }}</p>
-              <a mat-stroked-button routerLink="/reports">{{ "dashboard.quickQuery" | translate }}</a>
-            </div>
-          }
-        }
-      </section>
-    </div>
+      }
+    </section>
 
     <section class="dashboard-contexts" aria-labelledby="dashboard-tools">
       <h2 id="dashboard-tools">{{ "dashboard.tools" | translate }}</h2>
@@ -123,7 +104,7 @@ import { AlertStore } from "../../../vehicle-monitoring/application/alert.store"
     .dashboard-hero p { margin: .55rem 0 0; color: #e2f4f6; }
     .dashboard-hero a { background: white; color: #12334c; }
     .dashboard-hero button { background: #a4ebe4; color: #12334c; }
-    .dashboard-metrics, .dashboard-detail, .context-grid { display: grid; gap: 1rem; margin-block-start: 1rem; }
+    .dashboard-metrics, .context-grid { display: grid; gap: 1rem; margin-block-start: 1rem; }
     .dashboard-metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .dashboard-metric, .context-card {
       background: white; border: 1px solid #dce6ec; border-radius: .8rem; padding: 1rem;
@@ -137,18 +118,14 @@ import { AlertStore } from "../../../vehicle-monitoring/application/alert.store"
     .dashboard-metric.neutral { border-top: 3px solid #087f8c; }
     .dashboard-metric:hover, .context-card:hover { background: #edf8f8; border-color: #087f8c; }
     .dashboard-metric:focus-visible, .context-card:focus-visible { outline: 3px solid #087f8c; outline-offset: 2px; }
-    .dashboard-detail { grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); align-items: start; }
-    .dashboard-detail .section { min-width: 0; margin: 0; }
-    .dashboard-detail .section-heading { flex-wrap: wrap; gap: .5rem; }
-    .risk-filters { display: flex; gap: .25rem; flex-wrap: wrap; padding: .65rem 1rem; }
-    .risk-filters .selected { background: #dbf0f0; color: #095361; }
+    .dashboard-history { margin-block-start: 1rem; }
+    .dashboard-history .section-heading { flex-wrap: wrap; gap: .5rem; }
     .dashboard-empty { padding: 1.25rem; }
     .dashboard-contexts { margin-block-start: 1.5rem; }
     .context-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .context-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .7rem; align-items: center; }
     .context-card span { display: block; margin-top: .25rem; color: #52677b; font-size: .875rem; }
     @media (max-width: 1050px) {
-      .dashboard-detail { grid-template-columns: 1fr; }
       .dashboard-metrics, .context-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 470px) {
@@ -170,17 +147,9 @@ export class Dashboard {
   );
   readonly fleetLoading = computed(() => this.vehicles.loading() || this.reports.loading());
   readonly fleetError = computed(() => this.vehicles.error() || this.reports.error());
-  readonly riskFilter = signal("all");
-  readonly filters = [
-    { value: "all", label: "common.all" },
-    { value: "high", label: "risk.high" },
-    { value: "medium", label: "risk.medium" },
-    { value: "unknown", label: "risk.unknown" },
-  ];
-  readonly visibleVehicles = computed(() => this.vehicles.items().filter((vehicle) =>
-    this.riskFilter() === "all" ||
-    (this.reports.latest(vehicle.id)?.risk ?? "unknown") === this.riskFilter(),
-  ).slice(0, 6));
+  readonly vehicleNames = computed(() => new Map(
+    this.vehicles.items().map((vehicle) => [vehicle.id, `${vehicle.brand} ${vehicle.model}`]),
+  ));
   readonly metrics = computed(() => {
     const vehicles = this.vehicles.items();
     const hasVehicles = !this.vehicles.loading() && !this.vehicles.error();
@@ -199,14 +168,14 @@ export class Dashboard {
     { path: "/profile", icon: "user", label: "nav.profile", action: "dashboard.accountAction" },
     { path: "/subscription", icon: "file-text", label: "nav.subscription", action: "dashboard.planAction" },
     { path: "/vehicles", icon: "search", label: "dashboard.vehicleInformation", action: "dashboard.vehicleAction" },
-    { path: "/cases", icon: "clipboard-check", label: "nav.fleet", action: "dashboard.fleetAction" },
+    { path: "/fleet", icon: "truck", label: "nav.fleet", action: "dashboard.fleetAction" },
     { path: "/reports", icon: "file-text", label: "nav.reports", action: "dashboard.reportAction" },
     { path: "/monitoring", icon: "history", label: "nav.monitoring", action: "dashboard.monitorAction" },
   ];
   readonly recent = computed(() =>
     [...this.reports.items()]
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-      .slice(0, 3),
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id - a.id)
+      .slice(0, 10),
   );
   constructor() {
     void this.load();
