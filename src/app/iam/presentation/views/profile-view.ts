@@ -32,11 +32,17 @@ import { IamStore } from "../../application/iam.store";
             <mat-error>{{ "common.required" | translate }}</mat-error>
           </mat-form-field>
 
+            @if (store.user()?.accountType; as accountType) {
+              <p class="full">{{ "auth.accountType" | translate }} · {{ ("auth." + accountType) | translate }}</p>
+            }
+            @if (store.user()?.accountType !== "personal") {
           <mat-form-field appearance="outline" class="full">
             <mat-label>{{ "common.organization" | translate }}</mat-label>
             <input matInput formControlName="organization" />
             <mat-error>{{ "common.required" | translate }}</mat-error>
           </mat-form-field>
+
+            }
 
           <p class="full">
             {{ "common.email" | translate }}: {{ store.user()?.email }}
@@ -78,7 +84,7 @@ export class ProfileView extends BaseForm {
     ],
     organization: [
       this.store.user()?.organization || "",
-      [Validators.required, Validators.pattern(/\S/)],
+      this.store.user()?.accountType === "personal" ? [] : [Validators.required, Validators.pattern(/\S/)],
     ],
   });
 

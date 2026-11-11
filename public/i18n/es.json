@@ -62,6 +62,9 @@
     "unknown": "No evaluado"
   },
   "auth": {
+    "accountType": "Tipo de cuenta",
+    "personal": "Particular",
+    "company": "Empresa",
     "signIn": "Iniciar sesión",
     "welcome": "Accede a tu espacio de trabajo",
     "signUp": "Crear cuenta",

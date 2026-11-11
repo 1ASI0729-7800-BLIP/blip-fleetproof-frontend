@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { BaseForm } from "../../../shared/presentation/components/base-form";
 import { LanguageSwitcher } from "../../../shared/presentation/components/language-switcher";
 import { UI_IMPORTS } from "../../../shared/presentation/ui-imports";
+import { AccountType } from "../../domain/model/user.entity";
 import { IamStore } from "../../application/iam.store";
 
 /**
@@ -37,10 +38,20 @@ import { IamStore } from "../../application/iam.store";
             </mat-form-field>
 
             <mat-form-field appearance="outline">
+              <mat-label>{{ "auth.accountType" | translate }}</mat-label>
+              <mat-select formControlName="accountType" (selectionChange)="setAccountType($event.value)">
+                <mat-option value="personal">{{ "auth.personal" | translate }}</mat-option>
+                <mat-option value="company">{{ "auth.company" | translate }}</mat-option>
+              </mat-select>
+              <mat-error>{{ "common.required" | translate }}</mat-error>
+            </mat-form-field>
+            @if (form.controls.accountType.value === "company") {
+            <mat-form-field appearance="outline">
               <mat-label>{{ "common.organization" | translate }}</mat-label>
               <input matInput formControlName="organization" autocomplete="organization" />
               <mat-error>{{ "common.required" | translate }}</mat-error>
             </mat-form-field>
+            }
           }
 
           <mat-form-field appearance="outline">
@@ -106,10 +117,10 @@ export class AuthView extends BaseForm {
       "",
       this.register ? [Validators.required, Validators.pattern(/\S/)] : [],
     ],
-    organization: [
-      "",
-      this.register ? [Validators.required, Validators.pattern(/\S/)] : [],
-    ],
+    accountType: this.fb.nonNullable.control<AccountType | "">(
+      "", this.register ? Validators.required : [],
+    ),
+    organization: [""],
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.minLength(8)]],
   });
@@ -118,14 +129,22 @@ export class AuthView extends BaseForm {
    * @description Submits the form, authenticates or registers the user, and handles redirection.
    * @returns {Promise<void>}
    */
+  setAccountType(type: AccountType): void {
+    const organization = this.form.controls.organization;
+    organization.setValidators(type === "company" ? [Validators.required, Validators.pattern(/\S/)] : []);
+    organization.updateValueAndValidity();
+  }
+
   async submit(): Promise<void> {
     if (!this.validateForm(this.form)) {
       return;
     }
 
-    const ok = this.register
-      ? await this.store.register(this.form.getRawValue())
-      : await this.store.signIn(this.form.getRawValue());
+    const { accountType, ...data } = this.form.getRawValue();
+    if (this.register && !accountType) return;
+    const ok = this.register && accountType
+      ? await this.store.register({ ...data, accountType })
+      : await this.store.signIn(data);
 
     if (ok) {
       const target = this.route.snapshot.queryParamMap.get("returnUrl");

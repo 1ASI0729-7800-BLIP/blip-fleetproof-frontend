@@ -62,6 +62,9 @@
     "unknown": "Not assessed"
   },
   "auth": {
+    "accountType": "Account type",
+    "personal": "Individual",
+    "company": "Business",
     "signIn": "Sign in",
     "welcome": "Access your workspace",
     "signUp": "Create account",
