@@ -92,6 +92,9 @@
     "summary": "Evaluación basada en reportes de demostración"
   },
   "vehicle": {
+    "myVehicles": "Mis vehículos",
+    "myVehiclesSubtitle": "Busca, registra y revisa la ficha de tus vehículos.",
+    "resetFilters": "Limpiar filtros",
     "importTemplate": "Descargar plantilla CSV",
     "title": "Gestión de flota",
     "subtitle": "Organiza vehículos, responsables y revisiones",

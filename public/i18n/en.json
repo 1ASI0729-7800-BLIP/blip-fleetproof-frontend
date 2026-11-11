@@ -92,6 +92,9 @@
     "summary": "Assessment based on demo reports"
   },
   "vehicle": {
+    "myVehicles": "My vehicles",
+    "myVehiclesSubtitle": "Find and register vehicles or review their details.",
+    "resetFilters": "Clear filters",
     "importTemplate": "Download CSV template",
     "title": "Fleet management",
     "subtitle": "Manage vehicles, responsible people and reviews",
