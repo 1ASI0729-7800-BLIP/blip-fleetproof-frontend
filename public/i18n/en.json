@@ -188,7 +188,7 @@
     "viewVehicles": "Go to My vehicles",
     "addVehicleFirst": "Register a vehicle to start monitoring it.",
     "cycleIncomplete": "The report was saved, but the cycle did not complete. Check reports and alerts before retrying.",
-    "subtitle": "Enable tracking and run demo cycles",
+    "subtitle": "Enable tracking and run a review when you need it.",
     "activate": "Enable monitoring",
     "pause": "Pause",
     "resume": "Resume",
@@ -199,7 +199,6 @@
     "never": "Not run",
     "cycleComplete": "Cycle completed. Check reports and alerts.",
     "selectVehicle": "Select vehicle",
-    "technical": "Cycles run manually against local data; there are no scheduled official-source queries.",
     "already": "This vehicle already has a monitoring record."
   },
   "alerts": {
