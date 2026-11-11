@@ -14,29 +14,16 @@ import { VehicleStore } from "../../application/vehicle.store";
 import { ReportStore } from "../../../report-management/application/report.store";
 import { VehicleTable } from "../components/vehicle-table";
 import { VehicleDialog } from "../components/vehicle-dialog";
-import { FleetStore } from "../../../fleet-management/application/fleet.store";
-import { FleetDialog } from "../../../fleet-management/presentation/components/fleet-dialog";
-import { CsvDialog } from "../../../fleet-management/presentation/components/csv-dialog";
 @Component({
   imports: [...UI_IMPORTS, FormsModule, StateMessage, VehicleTable],
   changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <div class="page-heading">
       <div>
-        <h1>{{ "vehicle.title" | translate }}</h1>
-        <p>{{ "vehicle.subtitle" | translate }}</p>
+        <h1>{{ "vehicle.myVehicles" | translate }}</h1>
+        <p>{{ "vehicle.myVehiclesSubtitle" | translate }}</p>
       </div>
       <div class="actions">
-        <button mat-stroked-button (click)="createFleet()">
-          {{ "vehicle.createFleet" | translate }}</button
-        ><button
-          mat-stroked-button
-          (click)="importCsv()"
-          [disabled]="store.loading() || !!store.error()"
-        >
-          <lucide-icon name="upload" size="17" />{{
-            "vehicle.import" | translate
-          }}</button
-        ><button mat-flat-button (click)="add()">
+        <button mat-flat-button (click)="add()">
           <lucide-icon name="plus" size="17" />{{ "vehicle.add" | translate }}
         </button>
       </div>
@@ -61,8 +48,8 @@ import { CsvDialog } from "../../../fleet-management/presentation/components/csv
           }
         </mat-select></mat-form-field
       >
-      @if (search() || risk() !== "all" || fleetId() !== -1) {
-        <button mat-button (click)="search.set(''); risk.set('all'); fleetId.set(-1)">
+      @if (search() || risk() !== "all") {
+        <button mat-button (click)="search.set(''); risk.set('all')">
           {{ "vehicle.resetFilters" | translate }}
         </button>
       }
@@ -70,23 +57,6 @@ import { CsvDialog } from "../../../fleet-management/presentation/components/csv
         >{{ filtered().length }} {{ "common.vehicles" | translate }}</span
       >
     </div>
-    <div class="toolbar">
-      <mat-form-field appearance="outline"
-        ><mat-label>{{ "vehicle.fleet" | translate }}</mat-label
-        ><mat-select [ngModel]="fleetId()" (ngModelChange)="fleetId.set($event)"
-          ><mat-option [value]="-1">{{ "common.all" | translate }}</mat-option
-          ><mat-option [value]="0">{{
-            "common.unassigned" | translate
-          }}</mat-option>
-          @for (f of fleets.items(); track f.id) {
-            <mat-option [value]="f.id">{{ f.name }}</mat-option>
-          }
-        </mat-select></mat-form-field
-      >
-    </div>
-    @if (fleets.error()) {
-      <p class="error" role="alert">{{ fleets.error()! | translate }}</p>
-    }
     <section class="section">
       <app-state-message
         [loading]="store.loading() || reports.loading()"
@@ -116,8 +86,6 @@ export class VehiclesView {
   private readonly route = inject(ActivatedRoute);
   readonly risk = signal(this.route.snapshot.queryParamMap.get("risk") ?? "all");
   readonly risks = ["high", "medium", "low", "unknown"];
-  readonly fleets = inject(FleetStore);
-  readonly fleetId = signal(-1);
   readonly filtered = computed(() =>
     this.store
       .items()
@@ -128,8 +96,7 @@ export class VehiclesView {
             .toLowerCase()
             .includes(this.search().toLowerCase()) &&
           (this.risk() === "all" ||
-            (this.reports.latest(v.id)?.risk || "unknown") === this.risk()) &&
-          (this.fleetId() === -1 || v.fleetId === this.fleetId()),
+            (this.reports.latest(v.id)?.risk || "unknown") === this.risk()),
       ),
   );
   constructor() {
@@ -140,7 +107,6 @@ export class VehiclesView {
     await Promise.all([
       this.store.loadForUser(),
       this.reports.loadForUser(),
-      this.fleets.loadForUser(),
     ]);
   }
   add(): void {
@@ -149,11 +115,5 @@ export class VehiclesView {
       width: "580px",
       maxWidth: "95vw",
     });
-  }
-  createFleet(): void {
-    this.dialog.open(FleetDialog, { width: "440px", maxWidth: "95vw" });
-  }
-  importCsv(): void {
-    this.dialog.open(CsvDialog, { width: "580px", maxWidth: "95vw" });
   }
 }
