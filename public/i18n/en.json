@@ -77,9 +77,7 @@
     "invalidCredentials": "Incorrect email or password.",
     "emailTaken": "This email is already registered.",
     "passwordRule": "At least 8 characters.",
-    "demoCredentials": "Demo account: demo@fleetproof.pe · FleetProof2026!",
-    "demoAuth": "Simulated access for evaluation; do not use real data or passwords.",
-    "profileSubtitle": "Your demo account details"
+    "profileSubtitle": "Your account details"
   },
   "dashboard": {
     "viewReportHistory": "View full history",
