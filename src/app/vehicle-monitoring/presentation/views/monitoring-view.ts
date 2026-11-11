@@ -20,7 +20,7 @@ import { Monitoring } from "../../domain/model/monitoring.entity";
     @if (!vehicles.loading() && !vehicles.error() && !vehicles.items().length) {
       <div class="notice">
         {{ "monitoring.addVehicleFirst" | translate }}
-        <a mat-button routerLink="/vehicles">{{ "nav.fleet" | translate }}</a>
+        <a mat-button routerLink="/vehicles">{{ "monitoring.viewVehicles" | translate }}</a>
       </div>
     }
     <form class="inline-form" (ngSubmit)="activate()">
