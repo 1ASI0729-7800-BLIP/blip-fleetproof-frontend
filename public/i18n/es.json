@@ -186,7 +186,7 @@
     "viewVehicles": "Ir a Mis vehículos",
     "addVehicleFirst": "Registra un vehículo para activar su monitoreo.",
     "cycleIncomplete": "El reporte quedó guardado, pero el ciclo no se completó. Revisa reportes y alertas antes de reintentar.",
-    "subtitle": "Activa seguimiento y ejecuta ciclos de demostración",
+    "subtitle": "Activa el seguimiento y ejecuta una revisión cuando lo necesites.",
     "activate": "Activar monitoreo",
     "pause": "Pausar",
     "resume": "Reanudar",
@@ -197,7 +197,6 @@
     "never": "Sin ejecutar",
     "cycleComplete": "Ciclo completado. Revisa reportes y alertas.",
     "selectVehicle": "Seleccionar vehículo",
-    "technical": "Los ciclos se ejecutan manualmente sobre datos locales; no hay consultas programadas a fuentes oficiales.",
     "already": "Este vehículo ya tiene un registro de monitoreo."
   },
   "alerts": {

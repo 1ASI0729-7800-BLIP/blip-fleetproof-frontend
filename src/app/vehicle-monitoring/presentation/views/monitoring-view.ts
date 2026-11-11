@@ -16,7 +16,7 @@ import { Monitoring } from "../../domain/model/monitoring.entity";
         <p>{{ "monitoring.subtitle" | translate }}</p>
       </div>
     </div>
-    <div class="notice">{{ "monitoring.technical" | translate }}</div>
+
     @if (!vehicles.loading() && !vehicles.error() && !vehicles.items().length) {
       <div class="notice">
         {{ "monitoring.addVehicleFirst" | translate }}
