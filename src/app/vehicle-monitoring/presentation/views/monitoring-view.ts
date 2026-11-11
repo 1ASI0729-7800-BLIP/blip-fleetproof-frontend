@@ -17,10 +17,16 @@ import { Monitoring } from "../../domain/model/monitoring.entity";
       </div>
     </div>
     <div class="notice">{{ "monitoring.technical" | translate }}</div>
+    @if (!vehicles.loading() && !vehicles.error() && !vehicles.items().length) {
+      <div class="notice">
+        {{ "monitoring.addVehicleFirst" | translate }}
+        <a mat-button routerLink="/vehicles">{{ "monitoring.viewVehicles" | translate }}</a>
+      </div>
+    }
     <form class="inline-form" (ngSubmit)="activate()">
       <mat-form-field appearance="outline"
         ><mat-label>{{ "monitoring.selectVehicle" | translate }}</mat-label
-        ><mat-select name="vehicle" [(ngModel)]="selected">
+        ><mat-select name="vehicle" [(ngModel)]="selected" [disabled]="vehicles.loading() || !!vehicles.error() || !vehicles.items().length">
           @for (v of vehicles.items(); track v.id) {
             <mat-option [value]="v.id"
               >{{ v.plate }} · {{ v.brand }}</mat-option
