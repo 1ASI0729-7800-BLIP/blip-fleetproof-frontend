@@ -89,6 +89,7 @@
     "summary": "Assessment based on demo reports"
   },
   "vehicle": {
+    "resetFilters": "Clear filters",
     "importTemplate": "Download CSV template",
     "title": "Fleet management",
     "subtitle": "Manage vehicles, responsible people and reviews",

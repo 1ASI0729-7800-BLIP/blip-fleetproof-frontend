@@ -89,6 +89,7 @@
     "summary": "Evaluación basada en reportes de demostración"
   },
   "vehicle": {
+    "resetFilters": "Limpiar filtros",
     "importTemplate": "Descargar plantilla CSV",
     "title": "Gestión de flota",
     "subtitle": "Organiza vehículos, responsables y revisiones",

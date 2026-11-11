@@ -1,3 +1,4 @@
+import { ActivatedRoute } from "@angular/router";
 import {
   Component,
   computed,
@@ -60,6 +61,11 @@ import { CsvDialog } from "../../../fleet-management/presentation/components/csv
           }
         </mat-select></mat-form-field
       >
+      @if (search() || risk() !== "all" || fleetId() !== -1) {
+        <button mat-button (click)="search.set(''); risk.set('all'); fleetId.set(-1)">
+          {{ "vehicle.resetFilters" | translate }}
+        </button>
+      }
       <span class="count"
         >{{ filtered().length }} {{ "common.vehicles" | translate }}</span
       >
@@ -107,7 +113,8 @@ export class VehiclesView {
   readonly reports = inject(ReportStore);
   private readonly dialog = inject(MatDialog);
   readonly search = signal("");
-  readonly risk = signal("all");
+  private readonly route = inject(ActivatedRoute);
+  readonly risk = signal(this.route.snapshot.queryParamMap.get("risk") ?? "all");
   readonly risks = ["high", "medium", "low", "unknown"];
   readonly fleets = inject(FleetStore);
   readonly fleetId = signal(-1);
@@ -126,6 +133,7 @@ export class VehiclesView {
       ),
   );
   constructor() {
+    if (this.risk() !== "all" && !this.risks.includes(this.risk())) this.risk.set("all");
     void this.load();
   }
   async load(): Promise<void> {
