@@ -107,7 +107,7 @@
     "viewAll": "View all",
     "lastReport": "Latest report",
     "quickQuery": "Query plate",
-    "summary": "Assessment based on demo reports"
+    "summary": "Assessment based on available reports"
   },
   "vehicle": {
     "myVehicles": "My vehicles",
@@ -133,11 +133,11 @@
     "newReport": "Generate report",
     "import": "Import CSV",
     "importTitle": "Bulk vehicle import",
-    "importHint": "Columns: plate, brand, model, year, responsible. Maximum 25 vehicles per demo account.",
+    "importHint": "Columns: plate, brand, model, year, responsible. Maximum 25 vehicles per account.",
     "file": "CSV file",
     "importInvalid": "Invalid file, duplicate plates or incorrect fields. Check the indicated rows.",
     "importSuccess": "Vehicles imported: {{count}}.",
-    "quota": "The demo account limit of 25 vehicles is exceeded.",
+    "quota": "The account supports up to 25 vehicles.",
     "history": "Report history",
     "noHistory": "This vehicle has no reports yet.",
     "createFleet": "Create fleet",

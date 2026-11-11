@@ -107,7 +107,7 @@
     "viewAll": "Ver todos",
     "lastReport": "Último reporte",
     "quickQuery": "Consultar placa",
-    "summary": "Evaluación basada en reportes de demostración"
+    "summary": "Evaluación basada en los reportes disponibles"
   },
   "vehicle": {
     "myVehicles": "Mis vehículos",
@@ -133,11 +133,11 @@
     "newReport": "Generar reporte",
     "import": "Importar CSV",
     "importTitle": "Carga masiva de vehículos",
-    "importHint": "Columnas: plate, brand, model, year, responsible. Máximo 25 vehículos por cuenta demo.",
+    "importHint": "Columnas: plate, brand, model, year, responsible. Máximo 25 vehículos por cuenta.",
     "file": "Archivo CSV",
     "importInvalid": "Archivo inválido, placas duplicadas o campos incorrectos. Revisa las filas indicadas.",
     "importSuccess": "Vehículos importados: {{count}}.",
-    "quota": "Se excede el límite de 25 vehículos de la cuenta demo.",
+    "quota": "La cuenta admite hasta 25 vehículos.",
     "history": "Historial de reportes",
     "noHistory": "Este vehículo todavía no tiene reportes.",
     "createFleet": "Crear flota",
