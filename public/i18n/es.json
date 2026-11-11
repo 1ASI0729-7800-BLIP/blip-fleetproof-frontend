@@ -245,22 +245,22 @@
     "weekly": "Semanal",
     "monthly": "Mensual",
     "annual": "Anual",
-    "amount": "Monto simulado",
+    "amount": "Monto",
     "fleetPlans": "Planes de monitoreo de flotas",
     "individualPlans": "Planes de monitoreo individual",
     "capacity": "Hasta {{limit}} vehículo(s) en monitoreo",
     "choosePlan": "Elegir plan",
-    "paymentTitle": "Pago simulado por QR",
-    "simulation": "Este QR es de prueba y no realiza cobros. Pulsa «Pago confirmado» para activar el plan simulado.",
-    "qrAlt": "Código QR del pago simulado",
-    "cancelPayment": "Cancelar pago",
-    "confirmPayment": "Pago confirmado",
+    "paymentTitle": "Activar plan de monitoreo",
+    "qrAlt": "Código QR del plan de monitoreo",
+    "cancelPayment": "Cancelar",
+    "confirmPayment": "Confirmar activación",
     "qrError": "No se pudo generar el QR. Vuelve a elegir el plan.",
     "activated": "Plan de monitoreo activo.",
     "period": {
       "weekly": "cada semana",
       "monthly": "cada mes",
       "annual": "cada año"
-    }
+    },
+    "initialPlan": "Plan inicial"
   }
 }

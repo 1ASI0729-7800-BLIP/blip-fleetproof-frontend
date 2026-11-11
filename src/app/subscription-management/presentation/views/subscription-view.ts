@@ -87,7 +87,6 @@ import { SubscriptionStore } from "../../application/subscription.store";
       @if (paymentPlan(); as plan) {
         <h2 mat-dialog-title>{{ "subscription.paymentTitle" | translate }}</h2>
         <mat-dialog-content>
-          <p>{{ "subscription.simulation" | translate }}</p>
           <p><strong>S/ {{ plan.amount | number }}</strong> · {{ ("subscription." + plan.frequency) | translate }}
             ({{ ("subscription.period." + plan.frequency) | translate }})</p>
           <img class="payment-qr" [src]="qr()" width="220" height="220"
@@ -143,7 +142,7 @@ export class SubscriptionView {
   }
 
   planLabel(plan: string): string {
-    if (plan === "demo") return "common.demo";
+    if (plan === "demo") return "subscription.initialPlan";
     return individualPlans.some((option) => option.frequency === plan)
       ? "subscription." + plan
       : plan;
