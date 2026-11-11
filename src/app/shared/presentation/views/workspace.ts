@@ -40,7 +40,7 @@ import { IamStore } from "../../../iam/application/iam.store";
       </nav>
       <div class="sidebar-bottom">
         <span class="demo-dot"></span>{{ "common.demo" | translate
-        }}<small>TB1 · Sprint 2</small>
+        }}
       </div>
     </aside>
     @if (menuOpen()) {
@@ -84,7 +84,7 @@ import { IamStore } from "../../../iam/application/iam.store";
       </header>
       <main class="page-content"><router-outlet /></main>
       <footer>
-        FleetProof · BLIP <span>{{ "common.demo" | translate }}</span>
+        FleetProof · BLIP
       </footer>
     </section>
   </div>`,
