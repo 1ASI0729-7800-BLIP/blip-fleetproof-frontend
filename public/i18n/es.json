@@ -154,6 +154,7 @@
     "partialComparison": "La cobertura difiere o está incompleta. No se puede concluir ausencia o resolución de antecedentes."
   },
   "monitoring": {
+    "addVehicleFirst": "Registra un vehículo para activar su monitoreo.",
     "cycleIncomplete": "El reporte quedó guardado, pero el ciclo no se completó. Revisa reportes y alertas antes de reintentar.",
     "subtitle": "Activa seguimiento y ejecuta ciclos de demostración",
     "activate": "Activar monitoreo",

@@ -154,6 +154,7 @@
     "partialComparison": "Coverage differs or is incomplete. Absence or resolution of records cannot be concluded."
   },
   "monitoring": {
+    "addVehicleFirst": "Register a vehicle to start monitoring it.",
     "cycleIncomplete": "The report was saved, but the cycle did not complete. Check reports and alerts before retrying.",
     "subtitle": "Enable tracking and run demo cycles",
     "activate": "Enable monitoring",
