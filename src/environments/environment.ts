@@ -1,14 +1,13 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: "https://fleetproof-fake-api.onrender.com",
+  platformProviderApiBaseUrl: "http://localhost:8080/api/v1",
   platformProviderUsersEndpointPath: "/users",
   platformProviderVehiclesEndpointPath: "/vehicles",
   platformProviderReportsEndpointPath: "/reports",
-  platformProviderSourceFixturesEndpointPath: "/sourceFixtures",
   platformProviderFleetsEndpointPath: "/fleets",
   platformProviderCasesEndpointPath: "/cases",
   platformProviderMonitoringEndpointPath: "/monitoring",
   platformProviderAlertsEndpointPath: "/alerts",
   platformProviderSubscriptionsEndpointPath: "/subscriptions",
-  demo: true,
+  demo: false,
 };

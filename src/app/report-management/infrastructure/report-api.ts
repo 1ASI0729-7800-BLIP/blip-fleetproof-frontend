@@ -1,6 +1,5 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { firstValueFrom } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { BaseApiEndpoint } from "../../shared/infrastructure/base-api-endpoint";
 import { BaseAssembler } from "../../shared/infrastructure/base-assembler";
@@ -44,11 +43,6 @@ export class ReportAssembler implements BaseAssembler<
     return r.reports.map((v) => this.toEntityFromResource(v));
   }
 }
-interface SourceFixture {
-  id: number;
-  plate: string;
-  revisions: { sources: SourceCheck[] }[];
-}
 @Injectable({ providedIn: "root" })
 export class ReportApi extends BaseApiEndpoint<
   VehicleReport,
@@ -64,28 +58,15 @@ export class ReportApi extends BaseApiEndpoint<
     );
   }
   async sources(plate: string, version: number): Promise<SourceCheck[]> {
-    const fixtures = await firstValueFrom(
-      this.http.get<SourceFixture[]>(
-        environment.platformProviderApiBaseUrl +
-          environment.platformProviderSourceFixturesEndpointPath,
-        {
-          params: { plate },
-        },
-      ),
-    );
     const now = new Date().toISOString();
-    const revision =
-      fixtures[0]?.revisions[
-        Math.min(version - 1, fixtures[0].revisions.length - 1)
-      ];
-    return revision
-      ? revision.sources.map((s) => ({ ...structuredClone(s), checkedAt: now }))
-      : ["SUNARP", "SAT", "CITV", "SOAT"].map((name) => ({
-          name,
-          status: "unavailable",
-          checkedAt: now,
-          evidence: "",
-          findings: [],
-        }));
+    void plate;
+    void version;
+    return ["SUNARP", "SAT", "CITV", "SOAT"].map((name) => ({
+      name,
+      status: "unavailable",
+      checkedAt: now,
+      evidence: "",
+      findings: [],
+    }));
   }
 }
