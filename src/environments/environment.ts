@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: "http://localhost:8080/api/v1",
+  platformProviderApiBaseUrl: "https://blip-fleetproof-backend-production.up.railway.app/api/v1",
   platformProviderUsersEndpointPath: "/users",
   platformProviderVehiclesEndpointPath: "/vehicles",
   platformProviderReportsEndpointPath: "/reports",
