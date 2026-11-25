@@ -179,7 +179,7 @@
     "technical": "Technical source notice",
     "notOfficial": "Informational report. Not an official certification.",
     "emptyPlate": "No information is available for this plate. The report will be partial.",
-    "evidenceLabel": "Synthetic record retained in db.json",
+    "evidenceLabel": "Evidence reference retained by the backend",
     "partialComparison": "Coverage differs or is incomplete. Absence or resolution of records cannot be concluded."
   },
   "monitoring": {

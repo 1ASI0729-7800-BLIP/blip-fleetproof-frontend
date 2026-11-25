@@ -2,12 +2,12 @@
   "info": {
     "name": "FleetProof local API and i18n",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Read-only requests against synthetic local data. JSON Server is not a secure authentication backend."
+    "description": "Requests against the FleetProof Spring Boot REST API and frontend translations."
   },
   "variable": [
     {
       "key": "api",
-      "value": "http://127.0.0.1:3000/api/v1"
+      "value": "http://localhost:8080/api/v1"
     },
     {
       "key": "frontend",
@@ -30,10 +30,10 @@
       }
     },
     {
-      "name": "GET sourceFixtures",
+      "name": "GET report source checks",
       "request": {
         "method": "GET",
-        "url": "{{api}}/sourceFixtures"
+        "url": "{{api}}/reports/source-checks?plate=ABC-123&version=1"
       }
     },
     {

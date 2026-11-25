@@ -179,7 +179,7 @@
     "technical": "Aviso técnico de fuente",
     "notOfficial": "Reporte informativo. No constituye certificación oficial.",
     "emptyPlate": "No hay información disponible para esta placa. El reporte será parcial.",
-    "evidenceLabel": "Registro sintético conservado en db.json",
+    "evidenceLabel": "Referencia de evidencia conservada por el backend",
     "partialComparison": "La cobertura difiere o está incompleta. No se puede concluir ausencia o resolución de antecedentes."
   },
   "monitoring": {

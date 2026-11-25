@@ -25,15 +25,17 @@ export class IamApi extends BaseApi {
    * @returns {Promise<User | null>}
    */
   async signIn(credentials: Credentials): Promise<User | null> {
-    const users = await firstValueFrom(
-      this.http.get<UserResource[]>(this.url, {
-        params: { email: credentials.email.trim().toLowerCase() },
-      }),
-    );
-    const user = users[0];
-    if (!user || user.passwordHash !== (await this.hash(credentials.password)))
+    try {
+      const user = await firstValueFrom(
+        this.http.post<UserResource>(`${this.url}/sign-in`, {
+          email: credentials.email.trim().toLowerCase(),
+          passwordHash: await this.hash(credentials.password),
+        }),
+      );
+      return this.assembler.toEntityFromResource(user);
+    } catch {
       return null;
-    return this.assembler.toEntityFromResource(user);
+    }
   }
 
   /**
@@ -42,20 +44,22 @@ export class IamApi extends BaseApi {
    */
   async register(data: Registration): Promise<User> {
     const email = data.email.trim().toLowerCase();
-    const existing = await firstValueFrom(
-      this.http.get<UserResource[]>(this.url, { params: { email } }),
-    );
-    if (existing.length) throw new Error("auth.emailTaken");
-    const resource = await firstValueFrom(
-      this.http.post<UserResource>(this.url, {
-        name: data.name.trim(),
-        email,
-        organization: data.accountType === "company" ? data.organization.trim() : "",
-        accountType: data.accountType,
-        passwordHash: await this.hash(data.password),
-      }),
-    );
-    return this.assembler.toEntityFromResource(resource);
+    try {
+      const resource = await firstValueFrom(
+        this.http.post<UserResource>(this.url, {
+          name: data.name.trim(),
+          email,
+          organization: data.accountType === "company" ? data.organization.trim() : "",
+          accountType: data.accountType,
+          passwordHash: await this.hash(data.password),
+        }),
+      );
+      return this.assembler.toEntityFromResource(resource);
+    } catch (error: unknown) {
+      if (typeof error === "object" && error !== null && "status" in error && error.status === 409)
+        throw new Error("auth.emailTaken");
+      throw error;
+    }
   }
 
   /**

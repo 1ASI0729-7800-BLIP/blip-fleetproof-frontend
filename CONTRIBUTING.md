@@ -17,7 +17,7 @@ Antes de integrar:
 3. Ejecutar npm run build.
 4. Actualizar decisiones arquitectónicas y trazabilidad cuando corresponda.
 
-No introducir datos personales o credenciales reales en db.json.
+No introducir datos personales, contraseñas, hashes ni credenciales reales en archivos del repositorio.
 
 ## Git
 

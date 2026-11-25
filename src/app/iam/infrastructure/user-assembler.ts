@@ -12,7 +12,6 @@ export interface UserResource extends BaseResource {
   name: string;
   email: string;
   organization: string;
-  passwordHash?: string;
   accountType?: AccountType;
 }
 

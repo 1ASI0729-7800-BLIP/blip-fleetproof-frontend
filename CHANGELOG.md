@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- Alineación de la raíz con Learning Center: db.json, EditorConfig, documentación y configuración ESLint.
+- Integración del frontend con el backend Spring Boot desplegable en Railway.
+- Eliminación de `db.json`, `routes.json` y las referencias activas a JSON Server.
+- Autenticación delegada al backend sin exponer hashes en las respuestas de usuarios.
+- Evaluación de fuentes de reportes solicitada al backend en lugar de fabricarse en Angular.
 - Pruebas Jasmine/Karma con Angular CLI y tsconfig.spec.json.
 - Playwright y pruebas de dominio conservadas como verificación adicional.
 - Environments de desarrollo/producción con rutas de recursos configurables.

@@ -1,5 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { firstValueFrom } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { BaseApiEndpoint } from "../../shared/infrastructure/base-api-endpoint";
 import { BaseAssembler } from "../../shared/infrastructure/base-assembler";
@@ -58,15 +59,10 @@ export class ReportApi extends BaseApiEndpoint<
     );
   }
   async sources(plate: string, version: number): Promise<SourceCheck[]> {
-    const now = new Date().toISOString();
-    void plate;
-    void version;
-    return ["SUNARP", "SAT", "CITV", "SOAT"].map((name) => ({
-      name,
-      status: "unavailable",
-      checkedAt: now,
-      evidence: "",
-      findings: [],
-    }));
+    return firstValueFrom(
+      this.http.get<SourceCheck[]>(`${this.endpointUrl}/source-checks`, {
+        params: { plate, version },
+      }),
+    );
   }
 }
