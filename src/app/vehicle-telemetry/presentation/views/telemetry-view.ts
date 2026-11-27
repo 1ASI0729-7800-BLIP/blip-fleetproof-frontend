@@ -25,6 +25,7 @@ import { TelemetryApi, TelemetryReadingData } from "../../infrastructure/telemet
       <div class="live-state" [class.online]="autoRefresh()">
         <span></span>{{ (autoRefresh() ? "telemetry.live" : "telemetry.paused") | translate }}
       </div>
+      <a mat-flat-button routerLink="/iot-simulator"><lucide-icon name="activity" size="17" />{{ "telemetry.openSimulator" | translate }}</a>
     </div>
 
     <section class="process-flow" aria-label="Telemetry event flow">
@@ -59,20 +60,20 @@ import { TelemetryApi, TelemetryReadingData } from "../../infrastructure/telemet
     <app-state-message [loading]="loading() && !readings().length" [error]="error()" [empty]="!loading() && !error() && !readings().length" (retry)="load()" />
 
     @if (latest()) {
-      <section class="latest" [class.critical]="latest()!.critical">
+      <section class="latest" [class.critical]="readingState(latest()!) === 'critical'" [class.warning]="readingState(latest()!) === 'warning'" [class.disconnected]="readingState(latest()!) === 'disconnected'">
         <div class="latest-heading">
           <div>
             <span class="kicker">{{ "telemetry.latestReading" | translate }}</span>
             <h2>{{ plate(latest()!.vehicleId) }}</h2>
             <p>{{ latest()!.deviceId }} · {{ relativeTime(latest()!.recordedAt) }}</p>
           </div>
-          <span class="risk-state">{{ (latest()!.critical ? "telemetry.critical" : "telemetry.normal") | translate }}</span>
+          <span class="risk-state">{{ ("telemetry." + readingState(latest()!)) | translate }}</span>
         </div>
 
         <div class="metric-grid">
-          <div><lucide-icon name="gauge" /><span>{{ "telemetry.speed" | translate }}</span><strong>{{ latest()!.gpsSpeedKph }}</strong><small>km/h</small></div>
-          <div><lucide-icon name="thermometer" /><span>{{ "telemetry.temperature" | translate }}</span><strong>{{ latest()!.engineTemperatureCelsius }}</strong><small>°C · SIMULATED</small></div>
-          <div><lucide-icon name="battery" /><span>{{ "telemetry.battery" | translate }}</span><strong>{{ latest()!.vehicleBatteryVoltage }}</strong><small>V · SIMULATED</small></div>
+          <div><lucide-icon name="gauge" /><span>{{ "telemetry.speed" | translate }}</span><strong>{{ latest()!.gpsSpeedKph }}</strong><small>km/h · max {{ latest()!.maximumSpeedThreshold }}</small></div>
+          <div><lucide-icon name="thermometer" /><span>{{ "telemetry.temperature" | translate }}</span><strong>{{ latest()!.engineTemperatureCelsius }}</strong><small>°C · {{ latest()!.minimumTemperatureThreshold }}–{{ latest()!.maximumTemperatureThreshold }} · SIMULATED</small></div>
+          <div><lucide-icon name="battery" /><span>{{ "telemetry.battery" | translate }}</span><strong>{{ latest()!.vehicleBatteryVoltage }}</strong><small>V · min {{ latest()!.minimumBatteryThreshold }} · SIMULATED</small></div>
           <div><lucide-icon name="activity" /><span>RPM</span><strong>{{ latest()!.engineRpm }}</strong><small>SIMULATED</small></div>
           <div><lucide-icon name="route" /><span>{{ "telemetry.distance" | translate }}</span><strong>{{ latest()!.sessionDistanceKm }}</strong><small>km</small></div>
           <div><lucide-icon name="move-3d" /><span>{{ "telemetry.acceleration" | translate }}</span><strong>{{ latest()!.accelerationMagnitude }}</strong><small>m/s²</small></div>
@@ -116,7 +117,7 @@ import { TelemetryApi, TelemetryReadingData } from "../../infrastructure/telemet
                   <td>{{ dateTime(reading.recordedAt) }}</td><td><a class="plate" [routerLink]="['/vehicles', reading.vehicleId]">{{ plate(reading.vehicleId) }}</a></td>
                   <td>{{ reading.gpsSpeedKph }} km/h</td><td>{{ reading.engineTemperatureCelsius }} °C</td>
                   <td>{{ reading.vehicleBatteryVoltage }} V</td>
-                  <td><span [class]="'badge status-' + (reading.critical ? 'open' : 'complete')">{{ (reading.critical ? "telemetry.critical" : "telemetry.normal") | translate }}</span></td>
+                  <td><span [class]="'badge status-' + (readingState(reading) === 'critical' ? 'open' : 'complete')">{{ ("telemetry." + readingState(reading)) | translate }}</span></td>
                 </tr>
               }
             </tbody>
@@ -137,8 +138,11 @@ import { TelemetryApi, TelemetryReadingData } from "../../infrastructure/telemet
     .toolbar { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }.toolbar mat-form-field { min-width:260px; flex:1; }
     .latest { border:1px solid #b8dfd9; border-top:4px solid #0b9a72; border-radius:1rem; background:white; padding:1.25rem; margin-bottom:1rem; }
     .latest.critical { border-color:#e7b9bc; border-top-color:#b3363e; }
+    .latest.warning { border-color:#ead8a6; border-top-color:#c48b12; }
+    .latest.disconnected { border-color:#c8d1d8; border-top-color:#6e7d88; }
     .latest-heading { display:flex; justify-content:space-between; gap:1rem; align-items:start; }.latest-heading h2 { margin:.25rem 0; font-size:2rem; }.latest-heading p,.kicker { color:#52677b; }.kicker { font-size:.72rem; font-weight:800; letter-spacing:.08em; }
     .risk-state { background:#e9f8f4; color:#08765a; border-radius:999px; padding:.45rem .75rem; font-weight:800; font-size:.75rem; }.critical .risk-state { background:#fbeaec; color:#a02d35; }
+    .warning .risk-state { background:#fff5d9; color:#8a5b00; }.disconnected .risk-state { background:#edf1f4; color:#52616b; }
     .metric-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:.75rem; margin:1.25rem 0; }
     .metric-grid div { background:#f4f8fa; border:1px solid #e0e9ee; border-radius:.75rem; padding:.85rem; min-width:0; }.metric-grid lucide-icon { color:#087f8c; }.metric-grid span,.metric-grid small { display:block; color:#52677b; font-size:.68rem; margin-top:.35rem; }.metric-grid strong { display:block; font-size:1.35rem; margin-top:.3rem; overflow-wrap:anywhere; }
     .risks,.context-actions { display:flex; flex-wrap:wrap; gap:.6rem; }.risks span { border-radius:999px; background:#fbeaec; color:#a02d35; padding:.45rem .7rem; font-size:.75rem; font-weight:800; }.context-actions { border-top:1px solid #e0e9ee; margin-top:1rem; padding-top:1rem; }
@@ -193,6 +197,15 @@ export class TelemetryView implements OnDestroy {
   dateTime(value: string): string { return new Intl.DateTimeFormat(document.documentElement.lang === "en" ? "en-US" : "es-PE", { dateStyle:"short", timeStyle:"medium" }).format(new Date(value)); }
   relativeTime(value: string): string { const seconds=Math.max(0,Math.round((Date.now()-new Date(value).getTime())/1000)); return seconds<60 ? `${seconds}s` : `${Math.floor(seconds/60)}m`; }
   riskLabel(value: string): string { return value.replaceAll("_", " "); }
+  readingState(reading: TelemetryReadingData): "normal" | "warning" | "critical" | "disconnected" {
+    if (Date.now() - new Date(reading.recordedAt).getTime() > 30_000) return "disconnected";
+    if (reading.critical) return "critical";
+    const temperatureMargin = Math.max(2, (reading.maximumTemperatureThreshold - reading.minimumTemperatureThreshold) * 0.1);
+    const nearTemperatureLimit = reading.engineTemperatureCelsius <= reading.minimumTemperatureThreshold + temperatureMargin || reading.engineTemperatureCelsius >= reading.maximumTemperatureThreshold - temperatureMargin;
+    const nearSpeedLimit = reading.gpsSpeedKph >= reading.maximumSpeedThreshold * 0.9;
+    const nearBatteryLimit = reading.vehicleBatteryVoltage <= reading.minimumBatteryThreshold + 0.5;
+    return nearTemperatureLimit || nearSpeedLimit || nearBatteryLimit ? "warning" : "normal";
+  }
   ngOnDestroy(): void { this.stopTimer(); }
   private startTimer(): void { this.stopTimer(); if (this.autoRefresh()) this.timer=setInterval(() => void this.load(), 5_000); }
   private stopTimer(): void { if (this.timer) clearInterval(this.timer); this.timer=null; }

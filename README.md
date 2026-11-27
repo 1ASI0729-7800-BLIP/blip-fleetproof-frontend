@@ -19,6 +19,7 @@ El frontend consume el REST API Spring Boot. Las fuentes oficiales SUNARP, SAT, 
 - `report-management`: reportes, fuentes, evaluación explicable y snapshots.
 - `vehicle-monitoring`: ciclos manuales de demostración y alertas.
 - `fleet-management`: flotas, carga CSV y casos de resolución.
+- `vehicle-telemetry`: dispositivo y umbrales, simulador con sensores del celular, telemetría persistida y monitoreo IoT.
 
 Las vistas delegan persistencia y reglas a stores/servicios. Los recursos JSON se convierten mediante assemblers. La base `learning-center` mantiene su licencia MIT; se conserva su aviso en `docs/THIRD_PARTY_NOTICES.md`.
 
@@ -82,6 +83,12 @@ La auditoría del 29/10/2026 encontró 11 alertas npm (3 críticas). Se actualiz
 
 El segmento inicial de la demostración es una pequeña flota de reparto. El recorrido es: registrar vehículo, generar snapshot, activar monitoreo manual, ejecutar un ciclo que detecta un cambio sintético, abrir la alerta, consultar el reporte, crear un caso con responsable, registrar una referencia de evidencia y resolverlo. Un caso resuelto conserva las revisiones de atención y no modifica los snapshots históricos ni certifica una regularización oficial.
 
-Las referencias de evidencia son texto, no archivos adjuntos ni validación documental. La primera edición de un caso antiguo captura su estado anterior en ese momento: no reconstruye eventos históricos ausentes. El historial es editable mediante la Fake API y no constituye un registro inmutable. No existen roles ni autorización de servidor; un control del cliente no protege los datos contra llamadas directas.
+Las referencias de evidencia son texto, no archivos adjuntos ni validación documental. El historial operativo de una incidencia IoT se obtiene del backend y cada actividad queda persistida con actor y fecha. No existen roles ni autorización de servidor; un control del cliente no protege los datos contra llamadas directas.
+
+## Demostración IoT integrada
+
+La ruta `/iot-simulator` pertenece a la aplicación principal y captura ubicación, velocidad y movimiento del teléfono cuando el navegador concede permisos. Temperatura de motor, voltaje y RPM se identifican como datos simulados porque un navegador móvil no puede leer el bus OBD del vehículo sin hardware adicional. La ruta `/telemetry` consulta el backend cada cinco segundos y muestra estados normal, advertencia, crítico y sin conexión; las alertas y los casos enlazan al flujo persistente de atención.
+
+En un celular, los sensores y la geolocalización requieren HTTPS. El backend debe permitir el origen exacto del frontend mediante `APP_CORS_ALLOWED_ORIGINS`. La colección de Postman del flujo se encuentra en el repositorio backend, en `docs/FleetProof-IoT.postman_collection.json`.
 
 Fixtures de fuentes y fecha de generación del snapshot representan una simulación. No prueban vigencia oficial de SOAT/CITV, discrepancias reales entre registros ni verificaciones externas. La disponibilidad incompleta produce reporte parcial y no debe mostrar riesgo bajo sin cobertura. Las pruebas de usabilidad con personas y la medición de mejoras de tiempo no se han realizado como parte de esta auditoría.

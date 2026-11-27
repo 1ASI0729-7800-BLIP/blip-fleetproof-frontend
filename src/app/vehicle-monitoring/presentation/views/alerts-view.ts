@@ -12,6 +12,7 @@ import { StateMessage } from "../../../shared/presentation/components/state-mess
 import { LanguageStore } from "../../../shared/application/language.store";
 import { VehicleStore } from "../../../vehicle-information/application/vehicle.store";
 import { AlertStore } from "../../application/alert.store";
+import { TelemetryApi, TelemetryReadingData } from "../../../vehicle-telemetry/infrastructure/telemetry-api";
 @Component({
   imports: [...UI_IMPORTS, FormsModule, RouterLink, StateMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -52,6 +53,15 @@ import { AlertStore } from "../../application/alert.store";
               {{ plate(a.vehicleId) }} · {{ "alerts." + a.type | translate }}
             </h3>
             <p>{{ a.messageKey | translate }}</p>
+            @if (telemetryFor(a.id); as reading) {
+              <div class="telemetry-detail">
+                <span>{{ reading.risks.join(" · ").replaceAll("_", " ") }}</span>
+                <span>{{ "telemetry.temperature" | translate }}: <b>{{ reading.engineTemperatureCelsius }} °C</b> ({{ reading.minimumTemperatureThreshold }}–{{ reading.maximumTemperatureThreshold }})</span>
+                <span>{{ "telemetry.speed" | translate }}: <b>{{ reading.gpsSpeedKph }} km/h</b> (max {{ reading.maximumSpeedThreshold }})</span>
+                <span>{{ "telemetry.battery" | translate }}: <b>{{ reading.vehicleBatteryVoltage }} V</b> (min {{ reading.minimumBatteryThreshold }})</span>
+                <span>{{ "telemetry.critical" | translate }}</span>
+              </div>
+            }
             <p>{{ language.date(a.createdAt) }}</p>
             <span
               [class]="
@@ -85,6 +95,8 @@ export class AlertsView {
   readonly vehicles = inject(VehicleStore);
   readonly language = inject(LanguageStore);
   readonly filter = signal("all");
+  private readonly telemetryApi = inject(TelemetryApi);
+  readonly telemetry = signal<TelemetryReadingData[]>([]);
   readonly filtered = computed(() =>
     [...this.store.items()]
       .filter((a) => this.filter() === "all" || a.status === this.filter())
@@ -95,8 +107,13 @@ export class AlertsView {
   }
   async load(): Promise<void> {
     await Promise.all([this.store.loadForUser(), this.vehicles.loadForUser()]);
+    try { this.telemetry.set(await this.telemetryApi.list(undefined, 200)); }
+    catch { this.telemetry.set([]); }
   }
   plate(id: number): string {
     return this.vehicles.items().find((v) => v.id === id)?.plate || "—";
+  }
+  telemetryFor(alertId: number): TelemetryReadingData | undefined {
+    return this.telemetry().find((reading) => reading.alertId === alertId);
   }
 }

@@ -27,7 +27,7 @@ export interface CaseRevision {
   recordedAt: string;
   actorId: number;
   responsible: string;
-  status: "open" | "in-progress" | "resolved";
+  status: "open" | "in-progress" | "resolved" | "closed";
   evidence: string;
   notes: string;
 }
@@ -68,8 +68,8 @@ export class ResolutionCase implements BaseEntity {
   get dueDate(): string {
     return this.#dueDate;
   }
-  #status: "open" | "in-progress" | "resolved";
-  get status(): "open" | "in-progress" | "resolved" {
+  #status: "open" | "in-progress" | "resolved" | "closed";
+  get status(): "open" | "in-progress" | "resolved" | "closed" {
     return this.#status;
   }
   #evidence: string;
@@ -93,7 +93,7 @@ export class ResolutionCase implements BaseEntity {
     title: string,
     responsible: string,
     dueDate: string,
-    status: "open" | "in-progress" | "resolved",
+    status: "open" | "in-progress" | "resolved" | "closed",
     evidence: string,
     notes: string,
     createdAt: string,
