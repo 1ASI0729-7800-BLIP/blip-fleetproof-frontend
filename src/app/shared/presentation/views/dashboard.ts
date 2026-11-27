@@ -171,6 +171,7 @@ export class Dashboard {
     { path: "/fleet", icon: "truck", label: "nav.fleet", action: "dashboard.fleetAction" },
     { path: "/reports", icon: "file-text", label: "nav.reports", action: "dashboard.reportAction" },
     { path: "/monitoring", icon: "history", label: "nav.monitoring", action: "dashboard.monitorAction" },
+    { path: "/telemetry", icon: "activity", label: "nav.telemetry", action: "dashboard.telemetryAction" },
   ];
   readonly recent = computed(() =>
     [...this.reports.items()]

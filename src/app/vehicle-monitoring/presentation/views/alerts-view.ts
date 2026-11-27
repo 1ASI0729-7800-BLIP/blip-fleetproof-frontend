@@ -43,9 +43,9 @@ import { AlertStore } from "../../application/alert.store";
       @for (a of filtered(); track a.id) {
         <div class="source-row">
           <lucide-icon
-            [name]="a.type === 'technical' ? 'alert-triangle' : 'bell'"
+            [name]="a.type === 'telemetry' ? 'activity' : (a.type === 'technical' ? 'alert-triangle' : 'bell')"
             size="21"
-            [style.color]="a.type === 'technical' ? '#b38125' : '#087f8c'"
+            [style.color]="a.type === 'telemetry' ? '#b3363e' : (a.type === 'technical' ? '#b38125' : '#087f8c')"
           />
           <div style="flex:1">
             <h3>
@@ -61,9 +61,11 @@ import { AlertStore } from "../../application/alert.store";
             >
           </div>
           <div class="actions">
-            <a mat-stroked-button [routerLink]="['/reports', a.reportId]">{{
-              "common.view" | translate
-            }}</a>
+            @if (a.reportId) {
+              <a mat-stroked-button [routerLink]="['/reports', a.reportId]">{{ "common.view" | translate }}</a>
+            } @else {
+              <a mat-stroked-button routerLink="/telemetry">{{ "telemetry.viewTelemetry" | translate }}</a>
+            }
             @if (a.status === "open") {
               <button
                 mat-button
