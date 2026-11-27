@@ -9,7 +9,7 @@ export interface AlertData extends BaseResource {
   userId: number;
   vehicleId: number;
   reportId: number;
-  type: "documentary" | "technical";
+  type: "documentary" | "technical" | "telemetry";
   status: "open" | "reviewed";
   createdAt: string;
   messageKey: string;

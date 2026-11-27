@@ -53,8 +53,8 @@ export class Alert implements BaseEntity {
   get reportId(): number {
     return this.#reportId;
   }
-  #type: "documentary" | "technical";
-  get type(): "documentary" | "technical" {
+  #type: "documentary" | "technical" | "telemetry";
+  get type(): "documentary" | "technical" | "telemetry" {
     return this.#type;
   }
   #status: "open" | "reviewed";
@@ -74,7 +74,7 @@ export class Alert implements BaseEntity {
     userId: number,
     vehicleId: number,
     reportId: number,
-    type: "documentary" | "technical",
+    type: "documentary" | "technical" | "telemetry",
     status: "open" | "reviewed",
     createdAt: string,
     messageKey: string,
