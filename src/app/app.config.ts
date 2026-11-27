@@ -30,6 +30,15 @@ import {
   LucideCheckCircle,
   LucideChevronRight,
   LucideHistory,
+  LucideActivity,
+  LucideGauge,
+  LucideThermometer,
+  LucideBattery,
+  LucideRoute,
+  LucideMove3d,
+  LucideMapPin,
+  LucidePause,
+  LucidePlay,
 } from "@lucide/angular";
 import { routes } from "./app.routes";
 export const appConfig: ApplicationConfig = {
@@ -68,6 +77,15 @@ export const appConfig: ApplicationConfig = {
       LucideCheckCircle,
       LucideChevronRight,
       LucideHistory,
+      LucideActivity,
+      LucideGauge,
+      LucideThermometer,
+      LucideBattery,
+      LucideRoute,
+      LucideMove3d,
+      LucideMapPin,
+      LucidePause,
+      LucidePlay,
     ),
   ],
 };

@@ -41,7 +41,8 @@
     "from": "From",
     "to": "To",
     "optional": "Optional",
-    "vehicles": "vehicles"
+    "vehicles": "vehicles",
+    "refresh": "Refresh"
   },
   "nav": {
     "myVehicles": "My vehicles",
@@ -56,7 +57,8 @@
     "monitoring": "Monitoring",
     "alerts": "Alerts",
     "cases": "Resolution cases",
-    "profile": "My profile"
+    "profile": "My profile",
+    "telemetry": "IoT telemetry"
   },
   "risk": {
     "low": "Low",
@@ -95,6 +97,7 @@
     "fleetAction": "Organize fleets and review cases",
     "reportAction": "Look up a plate or review report history",
     "monitorAction": "Start monitoring and review changes",
+    "telemetryAction": "Observe sensors, risks and incidents live",
     "subtitle": "Fleet status and pending findings",
     "total": "Registered vehicles",
     "critical": "High risk",
@@ -206,9 +209,41 @@
     "reviewed": "Reviewed",
     "documentary": "Documentary change",
     "technical": "Incomplete query",
+    "telemetry": "Telemetry risk",
+    "telemetryRisk": "An IoT indicator exceeded its expected range and created an incident.",
     "createCase": "Create case",
     "newFinding": "New findings were detected in a comparable source.",
     "partial": "One or more sources did not respond. Check coverage and limitations."
+  },
+  "telemetry": {
+    "title": "IoT telemetry",
+    "subtitle": "Phone and simulator data reflected from the backend in near real time.",
+    "live": "Live updates",
+    "paused": "Updates paused",
+    "sense": "Sense",
+    "analyze": "Analyze",
+    "act": "Act",
+    "followUp": "Follow up",
+    "rules": "Business rules",
+    "alertCase": "Alert and incident",
+    "vehicle": "Vehicle",
+    "pauseLive": "Pause updates",
+    "resumeLive": "Resume updates",
+    "latestReading": "Latest reading received",
+    "critical": "Critical risk",
+    "normal": "Normal operation",
+    "speed": "GPS speed",
+    "temperature": "Temperature",
+    "battery": "Vehicle battery",
+    "distance": "Distance",
+    "acceleration": "Acceleration",
+    "location": "View location",
+    "viewAlert": "View alert",
+    "viewCase": "View incident",
+    "viewTelemetry": "View telemetry",
+    "history": "Reading history",
+    "readings": "readings",
+    "time": "Time"
   },
   "cases": {
     "history": "Resolution history",

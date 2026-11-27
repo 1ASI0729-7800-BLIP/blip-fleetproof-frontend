@@ -41,7 +41,8 @@
     "from": "Desde",
     "to": "Hasta",
     "optional": "Opcional",
-    "vehicles": "vehículos"
+    "vehicles": "vehículos",
+    "refresh": "Actualizar"
   },
   "nav": {
     "myVehicles": "Mis vehículos",
@@ -56,7 +57,8 @@
     "monitoring": "Monitoreo",
     "alerts": "Alertas",
     "cases": "Casos de resolución",
-    "profile": "Mi perfil"
+    "profile": "Mi perfil",
+    "telemetry": "Telemetría IoT"
   },
   "risk": {
     "low": "Bajo",
@@ -95,6 +97,7 @@
     "fleetAction": "Organiza flotas y revisa casos",
     "reportAction": "Consulta una placa o revisa el historial",
     "monitorAction": "Activa el seguimiento y revisa cambios",
+    "telemetryAction": "Observa sensores, riesgos e incidencias en vivo",
     "subtitle": "Estado de tu flota y observaciones pendientes",
     "total": "Vehículos registrados",
     "critical": "Riesgo alto",
@@ -206,9 +209,41 @@
     "reviewed": "Revisada",
     "documentary": "Cambio documentario",
     "technical": "Consulta incompleta",
+    "telemetry": "Riesgo de telemetría",
+    "telemetryRisk": "Un indicador IoT excedió su rango esperado y generó una incidencia.",
     "createCase": "Crear caso",
     "newFinding": "Se detectaron nuevos hallazgos en una fuente comparable.",
     "partial": "Una o más fuentes no respondieron. Revisa cobertura y limitaciones."
+  },
+  "telemetry": {
+    "title": "Telemetría IoT",
+    "subtitle": "Datos del celular y del simulador reflejados desde el backend en tiempo casi real.",
+    "live": "Actualización en vivo",
+    "paused": "Actualización pausada",
+    "sense": "Sentir",
+    "analyze": "Analizar",
+    "act": "Actuar",
+    "followUp": "Seguimiento",
+    "rules": "Reglas de negocio",
+    "alertCase": "Alerta e incidencia",
+    "vehicle": "Vehículo",
+    "pauseLive": "Pausar actualización",
+    "resumeLive": "Reanudar actualización",
+    "latestReading": "Última lectura recibida",
+    "critical": "Riesgo crítico",
+    "normal": "Operación normal",
+    "speed": "Velocidad GPS",
+    "temperature": "Temperatura",
+    "battery": "Batería vehicular",
+    "distance": "Distancia",
+    "acceleration": "Aceleración",
+    "location": "Ver ubicación",
+    "viewAlert": "Ver alerta",
+    "viewCase": "Ver incidencia",
+    "viewTelemetry": "Ver telemetría",
+    "history": "Historial de lecturas",
+    "readings": "lecturas",
+    "time": "Hora"
   },
   "cases": {
     "history": "Historial de atención",

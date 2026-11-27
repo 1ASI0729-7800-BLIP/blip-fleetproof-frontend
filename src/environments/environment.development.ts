@@ -9,5 +9,6 @@ export const environment = {
   platformProviderMonitoringEndpointPath: "/monitoring",
   platformProviderAlertsEndpointPath: "/alerts",
   platformProviderSubscriptionsEndpointPath: "/subscriptions",
+  platformProviderTelemetryEndpointPath: "/telemetry-readings",
   demo: false,
 };

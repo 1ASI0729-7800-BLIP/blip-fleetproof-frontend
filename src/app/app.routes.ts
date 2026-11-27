@@ -36,6 +36,13 @@ export const routes: Routes = [
       { path: "reports/:id/compare", component: CompareView },
       { path: "reports/:id", component: ReportDetail },
       { path: "monitoring", component: MonitoringView },
+      {
+        path: "telemetry",
+        loadComponent: () =>
+          import("./vehicle-telemetry/presentation/views/telemetry-view").then(
+            (module) => module.TelemetryView,
+          ),
+      },
       { path: "alerts", component: AlertsView },
       {
         path: "fleet",
