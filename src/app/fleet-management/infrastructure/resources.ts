@@ -12,7 +12,7 @@ export interface CaseData extends BaseResource {
   title: string;
   responsible: string;
   dueDate: string;
-  status: "open" | "in-progress" | "resolved";
+  status: "open" | "in-progress" | "resolved" | "closed";
   evidence: string;
   notes: string;
   createdAt: string;

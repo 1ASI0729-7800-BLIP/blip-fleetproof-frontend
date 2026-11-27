@@ -100,7 +100,7 @@ export class CaseDialog extends BaseForm {
   readonly store = inject(CaseStore);
   readonly vehicles = inject(VehicleStore);
   private readonly iam = inject(IamStore);
-  readonly statuses = ["open", "in-progress", "resolved"];
+  readonly statuses = ["open", "in-progress", "resolved", "closed"];
   readonly form = inject(FormBuilder).nonNullable.group({
     vehicleId: [
       this.data.item?.vehicleId || this.data.vehicleId || 0,
@@ -146,24 +146,7 @@ export class CaseDialog extends BaseForm {
       v.evidence.trim(),
       v.notes.trim(),
       old?.createdAt || new Date().toISOString(),
-      [
-        ...(old?.history.length ? old.history : old ? [{
-          recordedAt: new Date().toISOString(),
-          actorId: this.iam.user()!.id,
-          responsible: old.responsible,
-          status: old.status,
-          evidence: old.evidence,
-          notes: old.notes,
-        }] : []),
-        {
-          recordedAt: new Date().toISOString(),
-          actorId: this.iam.user()!.id,
-          responsible: v.responsible.trim(),
-          status: v.status,
-          evidence: v.evidence.trim(),
-          notes: v.notes.trim(),
-        },
-      ],
+      old?.history ?? [],
     );
     const saved = await this.store.save(item);
     if (saved) this.ref.close(saved);

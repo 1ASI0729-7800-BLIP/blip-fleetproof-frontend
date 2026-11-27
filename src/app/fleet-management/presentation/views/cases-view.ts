@@ -14,6 +14,7 @@ import { VehicleStore } from "../../../vehicle-information/application/vehicle.s
 import { CaseStore } from "../../application/fleet.store";
 import { ResolutionCase } from "../../domain/model/fleet.entity";
 import { CaseDialog } from "../components/case-dialog";
+import { CaseWorkflowDialog } from "../components/case-workflow-dialog";
 @Component({
   imports: [...UI_IMPORTS, FormsModule, RouterLink, StateMessage],
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -26,7 +27,7 @@ import { CaseDialog } from "../components/case-dialog";
         <lucide-icon name="plus" size="17" />{{ "cases.create" | translate }}
       </button>
     </div>
-    <div class="notice">{{ "cases.noRiskChange" | translate }}</div>
+    <div class="notice">{{ "cases.workflowNotice" | translate }}</div>
     <div class="toolbar">
       <mat-form-field appearance="outline"
         ><mat-label>{{ "common.status" | translate }}</mat-label
@@ -86,9 +87,8 @@ import { CaseDialog } from "../components/case-dialog";
                 "common.view" | translate
               }}</a>
             }
-            <button mat-button (click)="open(c)">
-              {{ "cases.resolve" | translate }}
-            </button>
+            <button mat-flat-button (click)="workflow(c)">{{ "cases.manage" | translate }}</button>
+            <button mat-button (click)="open(c)">{{ "common.details" | translate }}</button>
           </div>
         </div>
       }
@@ -99,7 +99,7 @@ export class CasesView {
   readonly vehicles = inject(VehicleStore);
   private readonly dialog = inject(MatDialog);
   readonly filter = signal("all");
-  readonly statuses = ["open", "in-progress", "resolved"];
+  readonly statuses = ["open", "in-progress", "resolved", "closed"];
   readonly filtered = computed(() =>
     this.store
       .items()
@@ -127,5 +127,13 @@ export class CasesView {
       width: "580px",
       maxWidth: "95vw",
     });
+  }
+  workflow(item: ResolutionCase): void {
+    const ref = this.dialog.open(CaseWorkflowDialog, {
+      data: item,
+      width: "760px",
+      maxWidth: "96vw",
+    });
+    ref.afterClosed().subscribe(() => void this.load());
   }
 }
