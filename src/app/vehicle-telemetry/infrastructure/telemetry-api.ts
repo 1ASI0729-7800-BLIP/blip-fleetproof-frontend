@@ -20,6 +20,10 @@ export interface TelemetryReadingData {
   engineTemperatureCelsius: number;
   vehicleBatteryVoltage: number;
   engineRpm: number;
+  minimumTemperatureThreshold: number;
+  maximumTemperatureThreshold: number;
+  maximumSpeedThreshold: number;
+  minimumBatteryThreshold: number;
   locationSource: "DEVICE_SENSOR" | "SIMULATED";
   motionSource: "DEVICE_SENSOR" | "SIMULATED";
   engineDataSource: "DEVICE_SENSOR" | "SIMULATED";
@@ -27,6 +31,17 @@ export interface TelemetryReadingData {
   risks: string[];
   alertId: number | null;
   resolutionCaseId: number | null;
+}
+
+export interface TelemetryReadingRequest {
+  deviceId: string; vehicleId: number; recordedAt: string;
+  latitude: number | null; longitude: number | null; locationAccuracyMeters: number | null;
+  gpsSpeedKph: number; headingDegrees: number | null; sessionDistanceKm: number;
+  accelerationMagnitude: number; harshMovementDetected: boolean;
+  engineTemperatureCelsius: number; vehicleBatteryVoltage: number; engineRpm: number;
+  locationSource: "DEVICE_SENSOR" | "SIMULATED";
+  motionSource: "DEVICE_SENSOR" | "SIMULATED";
+  engineDataSource: "DEVICE_SENSOR" | "SIMULATED";
 }
 
 @Injectable({ providedIn: "root" })
@@ -39,5 +54,19 @@ export class TelemetryApi {
     let params = new HttpParams().set("limit", limit);
     if (vehicleId) params = params.set("vehicleId", vehicleId);
     return firstValueFrom(this.http.get<TelemetryReadingData[]>(this.endpoint, { params }));
+  }
+
+  registerDevice(value: {
+    deviceId: string; vehicleId: number; name: string; active: boolean;
+    minimumTemperatureCelsius: number; maximumTemperatureCelsius: number;
+    maximumSpeedKph: number; minimumBatteryVoltage: number;
+  }): Promise<unknown> {
+    return firstValueFrom(this.http.post(
+      environment.platformProviderApiBaseUrl + "/telemetry-devices", value,
+    ));
+  }
+
+  send(value: TelemetryReadingRequest): Promise<TelemetryReadingData> {
+    return firstValueFrom(this.http.post<TelemetryReadingData>(this.endpoint, value));
   }
 }
