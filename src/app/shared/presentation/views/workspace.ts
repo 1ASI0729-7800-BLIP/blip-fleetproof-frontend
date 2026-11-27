@@ -92,6 +92,7 @@ export class Workspace {
     { path: "/fleet", icon: "truck", key: "nav.fleet" },
     { path: "/reports", icon: "file-text", key: "nav.reports" },
     { path: "/monitoring", icon: "history", key: "nav.monitoring" },
+    { path: "/telemetry", icon: "activity", key: "nav.telemetry" },
     { path: "/alerts", icon: "bell", key: "nav.alerts" },
     { path: "/cases", icon: "clipboard-check", key: "nav.cases" },
     { path: "/subscription", icon: "file-text", key: "nav.subscription" },
