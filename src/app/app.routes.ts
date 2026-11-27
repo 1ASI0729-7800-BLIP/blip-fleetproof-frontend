@@ -43,6 +43,13 @@ export const routes: Routes = [
             (module) => module.TelemetryView,
           ),
       },
+      {
+        path: "iot-simulator",
+        loadComponent: () =>
+          import("./vehicle-telemetry/presentation/views/iot-simulator-view").then(
+            (module) => module.IotSimulatorView,
+          ),
+      },
       { path: "alerts", component: AlertsView },
       {
         path: "fleet",
